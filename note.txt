@@ -1,0 +1,17 @@
+jwt 
+
+token handle
+
+profile api
+
+{
+   "success": true,
+    "statusCode": 200,
+    "data": {
+        "id": "07dc21de-b5a9-4e05-a920-f9530ab80292",
+        "email": "vin@gmail.id",
+        "fullname": "Alvin jamal",
+        "role": "toko",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZpbkBnbWFpbC5pZCIsInJvbGUiOiJ0b2tvIiwiaWF0IjoxNjY3MjA4NTE2LCJleHAiOjE2NjcyMTIxMTZ9.CIu1dtbY3DVC3_WQTTBbESaOev_0ZgP-VUmAhLJwmuw"
+    },
+    "message": "login success"
