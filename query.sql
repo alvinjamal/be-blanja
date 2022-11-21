@@ -86,6 +86,7 @@ CREATE TABLE
     products_tag (
         products_id INT tag_id INT PRIMARY KEY (products_id, tag_id) CONSTRAINT fk_products FOREIGN KEY(products_id) REFERENCES products(id) CONSTRAINT fk_tag FOREIGN KEY(tag_id) REFERENCES tag(id)
     )
+    
 SELECT
     products.name,
     products.stock,
