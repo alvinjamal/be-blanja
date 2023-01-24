@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 let key = process.env.JWT_KEY;
 
 const role = (req, res, next) => {
-  if (req.params.role == "toko" || req.params.role == "cust") {
+  if (req.params.role == "seller" || req.params.role == "customer") {
     return next();
   }
   return response(res, 404, false, null, "wrong role users");

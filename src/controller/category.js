@@ -1,43 +1,59 @@
-const modelCategory = require("../model/category");
+const ModelCategory = require("../models/category");
+const cloudinary = require("cloudinary").v2;
 const { response } = require("../middlewares/common");
+const { resp } = require("../middlewares/common");
 
 const CategoryController = {
-  update: (req, res) => {
-    modelCategory
-      .updateData(req.params, req.body)
-      .then(() => resp(res, 200, true, "Update data success"))
-      .catch((err) => response(res, 404, false, err, "Update data failed"));
+  updateCategory: async (req, res) => {
+    try {
+      const Port = process.env.PORT;
+      const Host = process.env.HOST;
+      const photo = req.file.filename;
+      const uri = `http://${Host}:${Port}/img/${photo}`;
+      req.body.photo = uri;
+      req.body.name;
+      await ModelCategory.updateCategory(req.params.id_category, req.body);
+      return response(res, 200, true, req.body, "Input Data Success");
+    } catch (err) {
+      console.log(err);
+      return response(res, 404, false, err, "Input Data Fail");
+    }
   },
-
-  delete: (req, res) => {
-    modelCategory
-      .deleteData(req.params.id)
-      .then(() => resp(res, 200, true, "Delete data success"))
-      .catch((err) => response(res, 404, false, err, "Delete data failed"));
+  deleteCategory: (req, res) => {
+    ModelCategory.deleteCategory(req.params.id_category)
+      .then(() => resp(res, 200, true, "Delete category success"))
+      .catch((err) => response(res, 404, false, err, "Delete category failed"));
   },
-
-  getCategory: (req, res) => {
-    modelCategory
-      .selectData()
+  getCategory: (_req, res) => {
+    ModelCategory.selectCategory()
       .then((result) =>
-        response(res, 200, true, result.rows, "Get data success")
+        response(res, 200, true, result.rows, "Get category success")
       )
-      .catch((err) => response(res, 404, false, err, "Get data failed"));
+      .catch((err) => response(res, 404, false, err, "Get category failed"));
   },
-
   getCategoryDetail: (req, res) => {
-    modelCategory
-      .selectDataCategory(req.params)
-      .then(() => response(res, 200, true.rows, "Get detail data success"))
-      .catch((err) => response(res, 404, false, err, "Get detail data failed"));
+    ModelCategory.selectDataCategorybyId(req.params.id_category)
+      .then((result) =>
+        response(res, 200, true, result.rows, "Get detail category success")
+      )
+      .catch((err) =>
+        response(res, 404, false, err, "Get detail category failed")
+      );
   },
-
-  insert: (req, res) => {
-    modelCategory
-      .insertData(req.body)
-      .then(() => resp(res, 200, true, "Insert data success"))
-      .catch((err) => response(res, 404, false, err, "Insert data failed"));
+  insert: async (req, res) => {
+    try {
+      const Port = process.env.PORT;
+      const Host = process.env.HOST;
+      const photo = req.file.filename;
+      const uri = `http://${Host}:${Port}/img/${photo}`;
+      req.body.photo = uri;
+      req.body.name;
+      await ModelCategory.insertCategory(req.body);
+      return response(res, 200, true, req.body, "Insert Data Success");
+    } catch (err) {
+      console.log(err);
+      return response(res, 404, false, err, "Insert Data Fail");
+    }
   },
 };
-
 exports.CategoryController = CategoryController;

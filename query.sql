@@ -1,39 +1,74 @@
+-- Active: 1673703055127@@127.0.0.1@2311@latihan
 CREATE TABLE
     category(
-        id SERIAL PRIMARY KEY,
+        id_category SERIAL PRIMARY KEY,
         name VARCHAR NOT NULL
+    );
+
+CREATE TABLE
+    checkout(
+        id_checkout SERIAL PRIMARY KEY,
+        transaction_id INT REFERENCES transactions(id_transaction),
+        product_id INT REFERENCES products(id_product),
+        status_id INT REFERENCES status(id_status)
     );
 
 CREATE TABLE
     products (
-        id SERIAL PRIMARY KEY,
+        id_product SERIAL PRIMARY KEY,
         name VARCHAR NOT NULL,
         stock INT NOT NULL,
         price INT NOT NULL,
-        category_id INT REFERENCES category(id)
+        photo VARCHAR,
+        brand VARCHAR,
+        description VARCHAR,
+        category_id INT REFERENCES category(id_category),
+        user_id VARCHAR REFERENCES users(id_user)
     );
+
+ALTER TABLE transactions DROP COLUMN email;
+ALTER TABLE transactions ADD COLUMN email VARCHAR;
+
+CREATE Table users (
+    id_user VARCHAR PRIMARY KEY,
+    email VARCHAR NOT NULL,
+    password VARCHAR NOT NULL,
+    fullname VARCHAR,
+    role VARCHAR,
+    date VARCHAR,
+    gender VARCHAR,
+    address VARCHAR
+);
+
 
 CREATE TABLE
     transactions(
-        id SERIAL PRIMARY KEY,
+        id_transaction SERIAL PRIMARY KEY,
         email VARCHAR NOT NULL,
-        products_id INT REFERENCES products(id),
+        product_id INT REFERENCES products(id_product),
         amount INT NOT NULL,
         total INT NOT NULL,
-        status INT REFERENCES payment_status(id)
+        status INT REFERENCES status(id_status)
     );
 
 CREATE TABLE
-    payment_status(
-        id SERIAL PRIMARY KEY,
+    status(
+        id_status SERIAL PRIMARY KEY,
         name VARCHAR NOT NULL
     );
+
+DROP TABLE products;
+DROP TABLE transactions;
+DROP TABLE category;
+DROP TABLE checkout;
+DROP TABLE status;
+
 
 INSERT INTO category(id,name) VALUES(1,'nasi'),(2,'roti');
 
 INSERT INTO
-    products(name, stock, price, category_id)
-VALUES ('nasi kebuli', 12, 19000, 1);
+    products(name, stock, price, category_id, photo, brand)
+VALUES ('Baju 3Second', 12, 19000, 1, 'alvin', 'Outfit Store');
 
 INSERT INTO payment_status(id,name) VALUES(1,'unpaid');
 
@@ -71,7 +106,7 @@ FROM transactions
 
 UPDATE transactions SET status=2 WHERE id=1;
 
-ALTER TABLE transactions ADD username VARCHAR(255) AFTER id;
+ALTER TABLE category ADD photo VARCHAR;
 
 DELETE TABLE products;
 
@@ -98,14 +133,6 @@ WHERE id = 1
 
 
 DROP TABLE product CASCADE;
-
-CREATE Table users (
-    id VARCHAR PRIMARY KEY,
-    email VARCHAR NOT NULL,
-    password VARCHAR NOT NULL,
-    fullname VARCHAR,
-    role VARCHAR
-);
 
 
 INSERT INTO users(id,email,password,fullname,role) VALUES('1','ean@ean.id','123456','ean ean','admin');

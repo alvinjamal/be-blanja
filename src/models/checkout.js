@@ -1,0 +1,81 @@
+const Pool = require("../config/db");
+
+const insertCheckout = (dataCheckout) => {
+  const { transaction_id, product_id } = dataCheckout;
+  return Pool.query(
+    `INSERT INTO checkout(transaction_id,product_id,status_id)VALUES(${transaction_id},${product_id},0);
+    UPDATE transaction SET status=1`
+  );
+};
+
+const selectCheckout = (search) =>
+  Pool.query(
+    `SELECT checkout.*,transactions.qty,transactions.total,products.name,products.price,products.photo,status.name_status,users.name,users.address FROM checkout INNER JOIN transactions ON checkout.transaction_id=transaction.id_transaction INNER JOIN products ON checkout.product_id=products.id_product INNER JOIN status ON checkout.status_id=status.id_status INNER JOIN users ON checkout.user_id=users.id_user WHERE checkout.user_id='${user_id}' AND checkout.status_id=0 AND (name) ilike '%${search}%'`
+  );
+
+const selectCheckoutDone = (search) =>
+  Pool.query(
+    `SELECT checkout.*,transactions.qty,transactions.total,products.name,products.price,products.photo,status.name_status,users.name,users.address FROM checkout INNER JOIN transactions ON checkout.transaction_id=transactions.id_transaction INNER JOIN products ON checkout.product_id=products.id_product INNER JOIN status ON checkout.status_id=status.id_status INNER JOIN users ON checkout.user_id=users.id_user WHERE checkout.user_id='${user_id}' AND checkout.status_id=1 AND (name) ilike '%${search}%'`
+  );
+
+const selectCheckoutSeller = (search) =>
+  Pool.query(
+    `SELECT checkout.*,transactions.qty,transactions.total,products.name,products.price,status.name_status,users.name,users.address FROM checkout INNER JOIN transactions ON checkout.transaction_id=transactions.id_transaction INNER JOIN products ON checkout.product_id=products.id_product INNER JOIN status ON checkout.status_id=status.id_status INNER JOIN users ON checkout.user_id=users.id_user WHERE checkout.='${user_id}' AND checkout.status_id=0 AND (name) ilike '%${search}%'`
+  );
+
+const selectCheckoutDelivered = (search) =>
+  Pool.query(
+    `SELECT checkout.*,transactions.qty,transactions.total,products.name_product,products.price_product,status.name_status,users.name,users.address FROM checkout INNER JOIN transactions ON checkout.transaction_id=transactions.id_transaction INNER JOIN products ON checkout.product_id=products.id_product INNER JOIN status ON checkout.status_id=status.id_status INNER JOIN users ON checkout.user_id=users.id_user WHERE checkout.='${user_id}' AND checkout.status_id=1 AND (name) ilike '%${search}%'`
+  );
+const putStatusCheckout = (data) =>
+  new Promise((resolve, reject) => {
+    const { id_checkout } = data;
+    Pool.query(
+      `UPDATE checkout SET status_id=1 WHERE id_checkout=${id_checkout}`,
+      (err, result) => {
+        if (!err) {
+          resolve(result);
+        } else {
+          reject(err);
+        }
+      }
+    );
+  });
+
+const putStatusCheckoutId = (id_checkout) =>
+  new Promise((resolve, reject) => {
+    Pool.query(
+      `UPDATE checkout SET status_id=1 WHERE id_checkout=${id_checkout}`,
+      (err, result) => {
+        if (!err) {
+          resolve(result);
+        } else {
+          reject(err);
+        }
+      }
+    );
+  });
+
+const selectDataCheckoutbyId = (id_checkout) =>
+  new Promise((resolve, reject) => {
+    Pool.query(
+      `SELECT checkout.*,transactions.qty,transactions.total,products.name,products.price,products.photo,status.name,users.name,users.address FROM checkout INNER JOIN transactions ON checkout.transaction_id=transactions.id_transaction INNER JOIN products ON checkout.product_id=products.id_product INNER JOIN status ON checkout.status_id=status.id_status INNER JOIN users ON checkout.user_id=users.id_user WHERE checkout.id_checkout=${id_checkout} `,
+      (err, res) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(res);
+      }
+    );
+  });
+
+module.exports = {
+  insertCheckout,
+  selectCheckout,
+  selectCheckoutSeller,
+  selectCheckoutDelivered,
+  putStatusCheckout,
+  selectCheckoutDone,
+  selectDataCheckoutbyId,
+  putStatusCheckoutId,
+};

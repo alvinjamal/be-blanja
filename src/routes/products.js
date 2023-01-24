@@ -6,11 +6,11 @@ const { protect } = require("../middlewares/auth");
 const upload = require("../middlewares/upload");
 // const {hitCache,clearCache}  = require("../middlewares/redis");
 
+router.post("/add", protect, upload.single("photo"), ProductController.insert);
 router.get("/", ProductController.getProduct);
-router.get("/category", ProductController.getProductWithCategory);
-router.get("/:id", ProductController.getProductDetail);
-router.post("/", upload.single("photo"), ProductController.insert);
-router.put("/:id", ProductController.update);
-router.delete("/:id", ProductController.delete);
+// router.get("/category", ProductController.getProductWithCategory);
+router.get("/:id_product", ProductController.getProductDetail);
+router.put("/:id_product", ProductController.update);
+router.delete("/:id_product", ProductController.delete);
 
 module.exports = router;
