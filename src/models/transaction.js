@@ -2,13 +2,13 @@ const Pool = require("../config/db");
 
 const selectTransactionByUser = (user_id) =>
   Pool.query(
-    `SELECT transaction.id_transaction,transaction.product_id,transaction.qty_transaction,transaction.total_transaction,transaction.user_id,transaction.seller_id,products.name_product,products.photo_product,products.brand_product,products.price_product FROM transaction INNER JOIN products ON transaction.product_id=products.id_product WHERE transaction.user_id='${user_id}' AND status=0`
+    `SELECT transactions.id_transaction,transactions.product_id,transactions.qty,transactions.total,transactions.user_id,products.name,products.photo,products.brand,products.price FROM transactions INNER JOIN products ON transactions.product_id=products.id_product WHERE transactions.user_id='${user_id}' AND status=0`
   );
 
-const selectDataTransactionbyId = (id) =>
+const selectDataTransactionbyId = (id_transaction) =>
   new Promise((resolve, reject) => {
     Pool.query(
-      `select * from transactions where id_transaction = '${id}' `,
+      `select * from transactions where id_transaction = '${id_transaction}' `,
       (err, res) => {
         if (err) {
           reject(err);
@@ -18,23 +18,37 @@ const selectDataTransactionbyId = (id) =>
     );
   });
 
-const insertTransaction = (data) => {
-  const { email, product_id, qty, total, amount, status } = data;
+const selectDataTransactionAll = (user_id) =>
+  new Promise((resolve, reject) => {
+    Pool.query(
+      `select transactions.id_transaction,transactions.product_id,transactions.qty,transactions.total,transactions.user_id,products.name,products.photo,products.brand,products.price FROM transactions INNER JOIN products ON transactions.product_id=products.id_product WHERE transactions.user_id='${user_id}' AND status=1 `,
+      (err, res) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(res);
+      }
+    );
+  });
+
+const insertTransaction = (user_id, data) => {
+  const { product_id, qty, total, status } = data;
   console.log(data);
   return Pool.query(
-    `INSERT INTO transactions(email,product_id,qty,total,amount,status)VALUES('${email}',${product_id},${qty},${total},${amount},0)`
+    `INSERT INTO transactions(product_id,qty,total,user_id,status)VALUES(${product_id},${qty},${total},'${user_id}',1)`
   );
 };
+
 const updateTransaction = (id_transaction, dataTransaction) => {
-  const { email, product_id, amount, total } = dataTransaction;
+  const { product_id, amount, total, qty, status } = dataTransaction;
   return Pool.query(
-    `UPDATE transactions SET email='${email}',product_id='${product_id}',amount='${amount}',total='${total}' WHERE id_transaction='${id_transaction}'`
+    `UPDATE transactions SET=product_id='${product_id}',amount='${amount}',total='${total}',qty='${qty}',1 WHERE id_transaction='${id_transaction}'`
   );
 };
 
 const deleteTransaction = (id_transaction) =>
   Pool.query(
-    `DELETE FROM transaction where id_transaction='${id_transaction}'`
+    `DELETE FROM transactions where id_transaction='${id_transaction}'`
   );
 
 module.exports = {
@@ -43,4 +57,5 @@ module.exports = {
   insertTransaction,
   deleteTransaction,
   updateTransaction,
+  selectDataTransactionAll,
 };

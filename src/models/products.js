@@ -41,10 +41,27 @@ const deleteData = (id_product) => {
   return Pool.query(`DELETE FROM products where id_product='${id_product}'`);
 };
 
+const selectDataProductbyCategory = (category_id) =>
+  new Promise((resolve, reject) => {
+    Pool.query(
+      `select products.id_product,products.name,products.stock,products.price,products.brand,category.name as category,products.photo
+      FROM products
+      INNER JOIN category
+      ON products.category_id = category.id_category where category_id = '${category_id}'`,
+      (err, res) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(res);
+      }
+    );
+  });
+
 module.exports = {
   selectData,
   insertData,
   deleteData,
   updateData,
   selectDatabyId,
+  selectDataProductbyCategory,
 };

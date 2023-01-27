@@ -7,9 +7,9 @@ const upload = require("../middlewares/upload");
 // const {hitCache,clearCache}  = require("../middlewares/redis");
 
 router.get("/", CategoryController.getCategory);
-router.get("/category", CategoryController.getCategoryDetail);
+router.get("/:id_category", CategoryController.getCategoryDetail);
 router.post("/add", protect, upload.single("photo"), CategoryController.insert);
 router.put("/:id", CategoryController.updateCategory);
-router.delete("/:id", CategoryController.deleteCategory);
+router.delete("/:id", protect, CategoryController.deleteCategory);
 
 module.exports = router;

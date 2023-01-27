@@ -5,15 +5,15 @@ const ProductController = {
   update: (req, res, next) => {
     const Port = process.env.PORT;
     const Host = process.env.HOST;
-    const photo = req.file.filename;
-    const uri = `http://${Host}:${Port}/img/${photo}`;
-    req.body.photo = uri;
+    // const photo = req.file.filename;
+    // const uri = `http://${Host}:${Port}/img/${photo}`;
+    // req.body.photo = uri;
     req.body.name = req.body.name;
     req.body.stock = parseInt(req.body.stock);
     req.body.price = parseInt(req.body.price);
     req.body.brand = req.body.brand;
-    req.body.category_id = req.body.category_id;
-    ModelProduct.updateData(req.params.id_user, req.body)
+    req.body.category_id = parseInt(req.body.category_id);
+    ModelProduct.updateData(req.params.id_product, req.body)
       .then((result) => response(res, 200, true, result, "update data success"))
       .catch((err) => response(res, 404, false, err, "get data fail"));
   },
@@ -44,6 +44,18 @@ const ProductController = {
     }
   },
 
+  getProductByCategory: async (req, res) => {
+    try {
+      const result = await ModelProduct.selectDataProductbyCategory(
+        req.params.category_id
+      );
+      response(res, 200, true, result.rows, "Get Product by Category success");
+    } catch (error) {
+      console.log(error);
+      response(res, 404, false, "Get Product by Category failed");
+    }
+  },
+
   getProductDetail: (req, res, next) => {
     ModelProduct.selectDatabyId(req.params.id_product)
       .then((result) =>
@@ -51,6 +63,7 @@ const ProductController = {
       )
       .catch((err) => response(res, 404, false, err, "Get data fail"));
   },
+
   insert: (req, res, next) => {
     const Port = process.env.PORT;
     const Host = process.env.HOST;

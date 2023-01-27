@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+
 const ProductRouter = require("./products");
 const UsersRouter = require("./users");
 const CategoryRouter = require("./category");

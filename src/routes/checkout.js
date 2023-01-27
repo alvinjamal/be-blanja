@@ -5,13 +5,13 @@ const { protect } = require("../middlewares/auth");
 const { route } = require("./status");
 
 router
-  .post("/post", checkoutController.postCheckout)
-  .put("/update", checkoutController.putStatus);
+  .post("/post", protect, checkoutController.postCheckout)
+  .put("/update", protect, checkoutController.putStatus);
 router
-  .get("/all", checkoutController.getCheckout)
-  .get("/do", checkoutController.getCheckoutDelivered)
-  .get("/done", checkoutController.getCheckoutDone)
-  .get("/:id_checkout", checkoutController.getCheckoutDetail)
-  .put("/:id_checkout", checkoutController.putStatusId);
+  .get("/all", protect, checkoutController.getCheckout)
+  .get("/delivery", protect, checkoutController.getCheckoutDelivered)
+  .get("/done", protect, checkoutController.getCheckoutDone)
+  .get("/:id_checkout", protect, checkoutController.getCheckoutDetail)
+  .put("/:id_checkout", protect, checkoutController.putStatusId);
 
 module.exports = router;

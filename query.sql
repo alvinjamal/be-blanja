@@ -26,8 +26,8 @@ CREATE TABLE
         user_id VARCHAR REFERENCES users(id_user)
     );
 
-ALTER TABLE transactions DROP COLUMN email;
-ALTER TABLE transactions ADD COLUMN email VARCHAR;
+ALTER TABLE transactions DROP COLUMN amount;
+ALTER TABLE transactions ADD COLUMN user_id VARCHAR REFERENCES users(id_user);
 
 CREATE Table users (
     id_user VARCHAR PRIMARY KEY,
@@ -106,7 +106,7 @@ FROM transactions
 
 UPDATE transactions SET status=2 WHERE id=1;
 
-ALTER TABLE category ADD photo VARCHAR;
+ALTER TABLE checkout ADD user_id VARCHAR REFERENCES users(id_user);
 
 DELETE TABLE products;
 

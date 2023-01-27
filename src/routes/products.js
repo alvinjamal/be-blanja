@@ -8,8 +8,8 @@ const upload = require("../middlewares/upload");
 
 router.post("/add", protect, upload.single("photo"), ProductController.insert);
 router.get("/", ProductController.getProduct);
-// router.get("/category", ProductController.getProductWithCategory);
 router.get("/:id_product", ProductController.getProductDetail);
+router.get("/:category_id", ProductController.getProductByCategory);
 router.put("/:id_product", ProductController.update);
 router.delete("/:id_product", ProductController.delete);
 
