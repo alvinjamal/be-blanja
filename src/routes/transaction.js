@@ -3,7 +3,6 @@ const router = express.Router();
 const { protect } = require("../middlewares/auth");
 const { transactionController } = require("./../controller/transaction");
 
-router.get("/user", protect, transactionController.getTransactionByUser);
 router.get("/", protect, transactionController.getTransactionAll);
 router.post("/add", protect, transactionController.insertTransaction);
 router.get("/:id_transaction", transactionController.getTransactionDetail);

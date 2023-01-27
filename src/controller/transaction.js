@@ -24,15 +24,6 @@ const transactionController = {
         response(res, 404, false, err, "Delete transaction failed")
       );
   },
-  getTransactionByUser: async (req, res) => {
-    try {
-      const user_id = req.payload.id_user;
-      const result = await modelTransaction.selectTransactionByUser(user_id);
-      response(res, 200, true, result.rows, "Get transaction success");
-    } catch (err) {
-      response(res, 404, false, err, "Get transaction fail");
-    }
-  },
 
   getTransactionDetail: (req, res) => {
     modelTransaction
