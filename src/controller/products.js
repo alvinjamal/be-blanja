@@ -8,7 +8,7 @@ const ProductController = {
     // const photo = req.file.filename;
     // const uri = `http://${Host}:${Port}/img/${photo}`;
     // req.body.photo = uri;
-    req.body.name = req.body.name;
+    req.body.name_product = req.body.name_product;
     req.body.stock = parseInt(req.body.stock);
     req.body.price = parseInt(req.body.price);
     req.body.brand = req.body.brand;
@@ -65,21 +65,22 @@ const ProductController = {
   },
 
   insert: (req, res, next) => {
+    const user_id = req.payload.id_user;
     const Port = process.env.PORT;
     const Host = process.env.HOST;
     const photo = req.file.filename;
     const uri = `http://${Host}:${Port}/img/${photo}`;
     req.body.photo = uri;
-    req.body.name = req.body.name;
+    req.body.name_product = req.body.name_product;
     req.body.stock = parseInt(req.body.stock);
     req.body.price = parseInt(req.body.price);
     req.body.brand = req.body.brand;
     req.body.category_id = req.body.category_id;
-    ModelProduct.insertData(req.body)
+    ModelProduct.insertData(user_id, req.body)
       .then((result) =>
-        response(res, 200, true, req.body, "input data success")
+        response(res, 200, true, req.body, "Insert data success")
       )
-      .catch((err) => response(res, 404, false, err, "input data fail"));
+      .catch((err) => response(res, 404, false, err, "Insert data fail"));
   },
 };
 

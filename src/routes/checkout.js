@@ -5,7 +5,7 @@ const { protect } = require("../middlewares/auth");
 const { route } = require("./status");
 
 router
-  .post("/post", protect, checkoutController.postCheckout)
+  .post("/post", protect, checkoutController.insertCheckout)
   .put("/update", protect, checkoutController.putStatus);
 router
   .get("/all", protect, checkoutController.getCheckout)

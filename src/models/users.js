@@ -104,8 +104,23 @@ const updateProfile = (id_user, name, email, phone, gender, date, address) =>
     )
   );
 
-const updatePhoto = (id_user, data) => {
-  const { photo } = data;
+const updateProfileSeller = ({ id_user, store, email, phone }) =>
+  new Promise((resolve, reject) =>
+    Pool.query(
+      `UPDATE users SET store = COALESCE($2, store), email = COALESCE($3, email), phone = COALESCE($4, phone) WHERE id_user = $1`,
+      [id_user, store, email, phone],
+      (err, result) => {
+        if (!err) {
+          resolve(result);
+        } else {
+          reject(err);
+        }
+      }
+    )
+  );
+
+const updatePhotoProfile = (id_user, update) => {
+  const { photo } = update;
   return Pool.query(
     `UPDATE users SET photo='${photo}' WHERE id_user='${id_user}'`
   );
@@ -118,6 +133,7 @@ module.exports = {
   changePassword,
   findUsers,
   getUserById,
-  updatePhoto,
+  updatePhotoProfile,
   updateProfile,
+  updateProfileSeller,
 };

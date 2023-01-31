@@ -2,7 +2,7 @@ const modelCheckout = require("../models/checkout");
 const { response } = require("../middlewares/common");
 
 const checkoutController = {
-  postCheckout: async (req, res) => {
+  insertCheckout: async (req, res) => {
     try {
       const user_id = req.payload.id_user;
       console.log("id_user", user_id);

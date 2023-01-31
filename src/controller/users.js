@@ -6,13 +6,15 @@ const {
   changePassword,
   getUserById,
   findUsers,
-  updatePhoto,
   updateProfile,
+  updateProfileSeller,
+  updatePhotoProfile,
 } = require("../models/users");
 const bcrypt = require("bcryptjs");
 const { v4: uuidv4 } = require("uuid");
 const { generateToken, decodeToken } = require("../helpers/auth");
 const email = require("../middlewares/email");
+const cloudinary = require("../config/photo");
 
 const Port = process.env.PORT;
 const Host = process.env.HOST;
@@ -222,16 +224,45 @@ const UsersController = {
   putPhoto: async (req, res) => {
     try {
       const id_user = req.payload.id_user;
-      console.log("id", id_user);
-      const Port = process.env.PORT;
-      const Host = process.env.HOST;
-      const photo = req.file.filename;
-      const uri = `http://${Host}:${Port}/img/${photo}`;
-      req.body.photo = uri;
-      await updatePhoto(id_user, req.body);
+      const image = await cloudinary.uploader.upload(req.file.path, {
+        folder: "toko",
+      });
+
+      const update = {
+        photo: image.url,
+      };
+      await updatePhotoProfile(id_user, update);
       return response(res, 200, true, req.body, "Update Photo Success");
     } catch (err) {
       return response(res, 404, false, err, "Update Photo Fail");
+    }
+  },
+  editProfileSeller: async (req, res) => {
+    try {
+      const { store, email, phone } = req.body;
+      const { id_user } = req.payload;
+      console.log(id_user);
+
+      const {
+        rows: [users],
+      } = await findUsers(id_user);
+
+      if (!users) {
+        response(res, 404, false, null, "User not found");
+      } else {
+        const dataProfileSeller = {
+          id_user,
+          store: store || null,
+          email: email || null,
+          phone: phone || null,
+        };
+
+        await updateProfileSeller(dataProfileSeller);
+        response(res, 200, true, dataProfileSeller, "update data success");
+      }
+    } catch (error) {
+      console.log(error);
+      response(res, 404, false, error, "update data failed");
     }
   },
 };

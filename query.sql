@@ -2,7 +2,7 @@
 CREATE TABLE
     category(
         id_category SERIAL PRIMARY KEY,
-        name VARCHAR NOT NULL
+        name_category VARCHAR NOT NULL
     );
 
 CREATE TABLE
@@ -16,24 +16,24 @@ CREATE TABLE
 CREATE TABLE
     products (
         id_product SERIAL PRIMARY KEY,
-        name VARCHAR NOT NULL,
+        name_product VARCHAR NOT NULL,
         stock INT NOT NULL,
         price INT NOT NULL,
         photo VARCHAR,
         brand VARCHAR,
-        description VARCHAR,
         category_id INT REFERENCES category(id_category),
         user_id VARCHAR REFERENCES users(id_user)
     );
 
 ALTER TABLE transactions DROP COLUMN amount;
-ALTER TABLE transactions ADD COLUMN user_id VARCHAR REFERENCES users(id_user);
+ALTER TABLE checkout ADD COLUMN user_id VARCHAR REFERENCES users(id_user);
+ALTER TABLE users ADD COLUMN photo VARCHAR;
 
 CREATE Table users (
     id_user VARCHAR PRIMARY KEY,
     email VARCHAR NOT NULL,
     password VARCHAR NOT NULL,
-    fullname VARCHAR,
+    name_user VARCHAR,
     role VARCHAR,
     date VARCHAR,
     gender VARCHAR,
@@ -54,7 +54,7 @@ CREATE TABLE
 CREATE TABLE
     status(
         id_status SERIAL PRIMARY KEY,
-        name VARCHAR NOT NULL
+        name_status VARCHAR NOT NULL
     );
 
 DROP TABLE products;

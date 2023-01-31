@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const cors = require("cors");
 require("dotenv").config();
+const xss = require("xss-clean");
 const { response } = require("./src/middlewares/common");
 const app = express();
 const upload = require("./src/middlewares/upload");
@@ -14,6 +15,8 @@ app.use(cors("*"));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(xss());
 
 app.use("/", mainRouter);
 app.use("/img", express.static("./upload"));
