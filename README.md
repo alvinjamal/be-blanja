@@ -39,3 +39,28 @@ PHOTO_NAME=
 PHOTO_KEY=
 PHOTO_SECRET=
 
+#Users
+Login
+
+  POST /users/login
+
+Body
+
+{
+    "success": true,
+    "statusCode": 200,
+    "data": {
+        "id_user": "7b3aaf8b-e58f-424a-a9aa-b229e54da730",
+        "name": "Alvin Azkya",
+        "email": "alvin.jamalazkya@gmail.com",
+        "phone": "082118470511",
+        "role": "seller",
+        "store": "Outfit",
+        "date": "23 November 2001",
+        "gender": "Laki-Laki",
+        "address": "Tasikmalaya Jawa Barat",
+        "photo": "http://res.cloudinary.com/diunwoak6/image/upload/v1675054535/toko/cdxgxysmfjwala6nws1y.jpg",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VyIjoiN2IzYWFmOGItZTU4Zi00MjRhLWE5YWEtYjIyOWU1NGRhNzMwIiwiZW1haWwiOiJhbHZpbi5qYW1hbGF6a3lhQGdtYWlsLmNvbSIsInJvbGUiOiJzZWxsZXIiLCJpYXQiOjE2NzUxNDczMDYsImV4cCI6MTY3NTE1MDkwNn0.bZKVovYUmygQm2XZceHcL2SDPP6A9XTjZAoloZvD_F0"
+    },
+    "message": "Login Success"
+}
