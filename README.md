@@ -48,11 +48,16 @@ Body
 
 {
     "success": true,
+    
     "statusCode": 200,
+    
     "data": {
         "id_user": "7b3aaf8b-e58f-424a-a9aa-b229e54da730",
+        
         "name": "Alvin Azkya",
+        
         "email": "alvin.jamalazkya@gmail.com",
+        
         "phone": "082118470511",
         "role": "seller",
         "store": "Outfit",
