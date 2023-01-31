@@ -46,18 +46,14 @@ Login
 
 Body
 
+#Seller
 {
     "success": true,
-    
     "statusCode": 200,
-    
     "data": {
         "id_user": "7b3aaf8b-e58f-424a-a9aa-b229e54da730",
-        
         "name": "Alvin Azkya",
-        
         "email": "alvin.jamalazkya@gmail.com",
-        
         "phone": "082118470511",
         "role": "seller",
         "store": "Outfit",
@@ -66,6 +62,26 @@ Body
         "address": "Tasikmalaya Jawa Barat",
         "photo": "http://res.cloudinary.com/diunwoak6/image/upload/v1675054535/toko/cdxgxysmfjwala6nws1y.jpg",
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VyIjoiN2IzYWFmOGItZTU4Zi00MjRhLWE5YWEtYjIyOWU1NGRhNzMwIiwiZW1haWwiOiJhbHZpbi5qYW1hbGF6a3lhQGdtYWlsLmNvbSIsInJvbGUiOiJzZWxsZXIiLCJpYXQiOjE2NzUxNDczMDYsImV4cCI6MTY3NTE1MDkwNn0.bZKVovYUmygQm2XZceHcL2SDPP6A9XTjZAoloZvD_F0"
+    },
+    "message": "Login Success"
+}
+
+#Customer
+{
+    "success": true,
+    "statusCode": 200,
+    "data": {
+        "id_user": "cd742b78-1135-42d5-8c5e-6dd4780e9757",
+        "name": "Alvin Jamal Azkya",
+        "email": "alvinjamalazkya@gmail.com",
+        "phone": "08111",
+        "role": "customer",
+        "store": "undefined",
+        "date": "23 November",
+        "gender": "laki-laki",
+        "address": "Tasikmalaya",
+        "photo": null,
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VyIjoiY2Q3NDJiNzgtMTEzNS00MmQ1LThjNWUtNmRkNDc4MGU5NzU3IiwiZW1haWwiOiJhbHZpbmphbWFsYXpreWFAZ21haWwuY29tIiwicm9sZSI6ImN1c3RvbWVyIiwiaWF0IjoxNjc1MTQ3NTYyLCJleHAiOjE2NzUxNTExNjJ9.oxpFdfjPIv4EWYCkgrLPy3LKKOLAKgJj_0my8Mc5XVg"
     },
     "message": "Login Success"
 }
