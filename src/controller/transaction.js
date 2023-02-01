@@ -19,7 +19,7 @@ const transactionController = {
   deleteTransaction: (req, res) => {
     modelTransaction
       .deleteTransaction(req.params.id_transaction)
-      .then(() => resp(res, 200, true, "Delete transaction success"))
+      .then(() => response(res, 200, true, "Delete transaction success"))
       .catch((err) =>
         response(res, 404, false, err, "Delete transaction failed")
       );

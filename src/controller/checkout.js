@@ -1,4 +1,4 @@
-const modelCheckout = require("../models/checkout");
+const ModelCheckout = require("../models/checkout");
 const { response } = require("../middlewares/common");
 
 const checkoutController = {
@@ -9,7 +9,7 @@ const checkoutController = {
       req.body.transaction_id = parseInt(req.body.transaction_id);
       req.body.product_id = parseInt(req.body.product_id);
       req.body.status_id = parseInt(req.body.status_id);
-      await modelCheckout.insertCheckout(user_id, req.body);
+      await ModelCheckout.insertCheckout(user_id, req.body);
       return response(res, 200, true, req.body, "Input checkout succes");
     } catch (err) {
       console.log(err);
@@ -19,13 +19,12 @@ const checkoutController = {
   putStatus: async (req, res) => {
     try {
       //   const user_id = req.payload.id_user;
-      //   console.log(user_id);
       const { id_checkout } = req.body;
       const data = {
         id_checkout,
       };
       console.log(data);
-      const { rows } = await modelCheckout.putStatusCheckout(data);
+      const { rows } = await ModelCheckout.putStatusCheckout(data);
       return response(res, 200, true, rows, "Put status checkout success");
     } catch (err) {
       console.log(err);
@@ -34,7 +33,7 @@ const checkoutController = {
   },
   putStatusId: async (req, res) => {
     try {
-      const { rows } = await modelCheckout.putStatusCheckoutId(
+      const { rows } = await ModelCheckout.putStatusCheckoutId(
         req.params.id_checkout
       );
       return response(res, 200, true, rows, "Put status checkout success");
@@ -47,7 +46,7 @@ const checkoutController = {
     const search = req.query.search || "";
     try {
       const user_id = req.payload.id_user;
-      const result = await modelCheckout.selectCheckout(user_id, search);
+      const result = await ModelCheckout.selectCheckout(user_id, search);
       response(res, 200, true, result.rows, "Get checkout success");
     } catch (err) {
       console.log(err);
@@ -58,7 +57,7 @@ const checkoutController = {
     const search = req.query.search || "";
     try {
       const user_id = req.payload.id_user;
-      const result = await modelCheckout.selectCheckoutDone(user_id, search);
+      const result = await ModelCheckout.selectCheckoutDone(user_id, search);
       response(res, 200, true, result.rows, "Get checkout success");
     } catch (err) {
       console.log(err);
@@ -67,7 +66,7 @@ const checkoutController = {
   },
   getCheckoutDetail: async (req, res) => {
     try {
-      const result = await modelCheckout.selectDataCheckoutbyId(
+      const result = await ModelCheckout.selectDataCheckoutbyId(
         req.params.id_checkout
       );
       response(res, 200, true, result.rows, "get checkout success");
@@ -80,7 +79,7 @@ const checkoutController = {
     const search = req.query.search || "";
     try {
       const user_id = req.payload.id_user;
-      const result = await modelCheckout.selectCheckoutSeller(user_id, search);
+      const result = await ModelCheckout.selectCheckoutSeller(user_id, search);
       response(res, 200, true, result.rows, "Get checkout success");
     } catch (err) {
       console.log(err);
@@ -91,7 +90,7 @@ const checkoutController = {
     const search = req.query.search || "";
     try {
       const user_id = req.payload.id_user;
-      const result = await modelCheckout.selectCheckoutDelivered(
+      const result = await ModelCheckout.selectCheckoutDelivered(
         user_id,
         search
       );

@@ -5,9 +5,9 @@ const ProductController = {
   update: (req, res, next) => {
     const Port = process.env.PORT;
     const Host = process.env.HOST;
-    // const photo = req.file.filename;
-    // const uri = `http://${Host}:${Port}/img/${photo}`;
-    // req.body.photo = uri;
+    const photo = req.file.filename;
+    const uri = `http://${Host}:${Port}/img/${photo}`;
+    req.body.photo = uri;
     req.body.name_product = req.body.name_product;
     req.body.stock = parseInt(req.body.stock);
     req.body.price = parseInt(req.body.price);
@@ -19,7 +19,9 @@ const ProductController = {
   },
   delete: (req, res, next) => {
     ModelProduct.deleteData(req.params.id_product)
-      .then((result) => response(res, 200, true, result, "delete data success"))
+      .then((result) =>
+        response(res, 200, true, req.params, "delete data success")
+      )
       .catch((err) => response(res, 404, false, err, "get data fail"));
   },
   getProduct: async (req, res, next) => {

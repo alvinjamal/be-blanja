@@ -3,7 +3,7 @@ const Pool = require("../config/db");
 const insertCheckout = (user_id, dataCheckout) => {
   const { transaction_id, product_id } = dataCheckout;
   return Pool.query(
-    `INSERT INTO checkout(transaction_id,user_id,product_id,status_id)VALUES(${transaction_id},'${user_id}',${product_id},1);
+    `INSERT INTO checkout(transaction_id,user_id,product_id,status_id)VALUES(${transaction_id},'${user_id}',${product_id},2);
     UPDATE transactions SET status=2`
   );
 };
@@ -20,7 +20,7 @@ const selectCheckoutDone = (user_id, search) =>
 
 const selectCheckoutSeller = (user_id, search) =>
   Pool.query(
-    `SELECT checkout.*,transactions.qty,transactions.total,products.name_product,products.price,status.name_status,users.name,users.address FROM checkout INNER JOIN transactions ON checkout.transaction_id=transactions.id_transaction INNER JOIN products ON checkout.product_id=products.id_product INNER JOIN status ON checkout.status_id=status.id_status INNER JOIN users ON checkout.user_id=users.id_user WHERE checkout.user_id='${user_id}' AND checkout.status_id=1 AND (products.name_product) ilike '%${search}%'`
+    `SELECT checkout.*,transactions.qty,transactions.total,products.name_product,products.price,status.name_status,users.name,users.address FROM checkout INNER JOIN transactions ON checkout.transaction_id=transactions.id_transaction INNER JOIN products ON checkout.product_id=products.id_product INNER JOIN status ON checkout.status_id=status.id_status INNER JOIN users ON checkout.user_id=users.id_user WHERE checkout.user_id='${user_id}' AND checkout.status_id=2 AND (products.name_product) ilike '%${search}%'`
   );
 
 const selectCheckoutDelivered = (user_id, search) =>
