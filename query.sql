@@ -129,8 +129,9 @@ SELECT
     category.name as category
 FROM products
     INNER JOIN category ON products.category_id = category.id
-WHERE id = 1 
+WHERE id = 1 ;
 
+DELETE FROM users
 
 DROP TABLE product CASCADE;
 

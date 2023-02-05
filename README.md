@@ -44,14 +44,36 @@ PHOTO_NAME=
 PHOTO_KEY=
 PHOTO_SECRET=
 
-#Users
-Login
+## Users
+
+### Login
 
 POST /users/login
 
 Body
 
-### Seller
+```
+{
+    "success": true,
+    "statusCode": 200,
+    "data": {
+        "id_user": "c29f4a68-885e-460f-a7f9-5525fe9a73a9",
+        "name": "Alvin jamal",
+        "email": "alvinjamalazkya@gmail.com",
+        "phone": "0838161767374",
+        "role": "Customer",
+        "store": "Vin",
+        "date": "23 November 2001",
+        "gender": "Laki-Laki",
+        "address": "Kp. Godebag Tasikmalaya",
+        "photo": "http://res.cloudinary.com/diunwoak6/image/upload/v1675573936/toko/rfjizx1trnapxyq1kj2b.jpg",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VyIjoiYzI5ZjRhNjgtODg1ZS00NjBmLWE3ZjktNTUyNWZlOWE3M2E5IiwiZW1haWwiOiJhbHZpbmphbWFsYXpreWFAZ21haWwuY29tIiwicm9sZSI6IkN1c3RvbWVyIiwiaWF0IjoxNjc1NTc2Njg3LCJleHAiOjE2NzU1ODAyODd9.kdmoMRj-uAz5Kufb2tMBPg-2X0kmh5YubY7DBLb9h_o"
+    },
+    "message": "Login Success"
+}
+```
+
+#### Register Seller
 
 ```
 {
@@ -74,13 +96,11 @@ Body
 }
 ```
 
-Register
+#### Register Customer
 
 POST /users/register/:role
 
 Body
-
-### Customer
 
 ```
 {
@@ -103,7 +123,7 @@ Body
 }
 ```
 
-### Verification Otp
+#### Verification Otp
 
 POST /users/verif
 
@@ -126,7 +146,7 @@ Body
 }
 ```
 
-### Forgot
+#### Forgot
 
 POST /users/forgot
 
@@ -143,7 +163,7 @@ Body
 }
 ```
 
-### Change Password
+#### Change Password
 
 POST /users/forgort/:token
 
@@ -159,7 +179,7 @@ POST /users/forgort/:token
 }
 ```
 
-### Get All User
+#### Get All User
 
 GET /users/all
 
@@ -303,6 +323,7 @@ GET /products/
 
 Body
 
+```
 {
 "success": true,
 "statusCode": 200,
@@ -364,6 +385,7 @@ Body
 ],
 "message": "Get Data Success"
 }
+```
 
 ### Get By Id
 
@@ -371,6 +393,7 @@ GET /products/:id_products
 
 Body
 
+```
 {
 "success": true,
 "statusCode": 200,
@@ -419,6 +442,7 @@ Body
 ],
 "message": "Get Product by Category success"
 }
+```
 
 ### Add Product
 
@@ -426,6 +450,7 @@ POST /products/add
 
 Body
 
+```
 {
 "success": true,
 "statusCode": 200,
@@ -439,3 +464,4 @@ Body
 },
 "message": "Insert data success"
 }
+```
