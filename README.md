@@ -1,6 +1,6 @@
 # Store.id Backend
 
-<p>
+<p align='center'>
 https://github.com/alvinjamal/be-blanja/blob/main/ss/toko.png
 </p>
 # Run Locally
