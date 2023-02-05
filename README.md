@@ -206,14 +206,11 @@ Body
 "message": "Success Get User"
 }
 
-Get By Id
+#### Get By Id
 
 GET /users/user/:id_user
-
+...
 Body
-
-### Get By Id
-
 {
 "success": true,
 "statusCode": 200,
@@ -236,6 +233,7 @@ Body
 ],
 "message": "Success Get User By Token"
 }
+...
 
 Profile
 
@@ -243,7 +241,7 @@ PUT /users/profile
 
 Body
 
-### Update Profile Customer
+#### Update Profile Customer
 
 {
 "success": true,
@@ -266,7 +264,7 @@ PUT /users/seller
 
 Body
 
-### Update Profile Seller
+#### Update Profile Seller
 
 {
 "success": true,
@@ -286,7 +284,7 @@ PUT /users/edit
 
 Body
 
-### Update Photo
+#### Update Photo
 
 {
 "success": true,
@@ -301,7 +299,7 @@ Body
 
 ## Products
 
-Products
+### Get All
 
 GET /products/
 
@@ -369,7 +367,7 @@ Body
 "message": "Get Data Success"
 }
 
-Products By Id
+### Get By Id
 
 GET /products/:id_products
 
@@ -392,7 +390,7 @@ Body
 "message": "Get data success"
 }
 
-Products By Category
+### Get By Category
 
 GET /products/:category_id
 
@@ -424,7 +422,7 @@ Body
 "message": "Get Product by Category success"
 }
 
-Add Products
+### Add Product
 
 POST /products/add
 
@@ -443,9 +441,3 @@ Body
 },
 "message": "Insert data success"
 }
-
-Add Products
-
-POST /products/add
-
-Body
