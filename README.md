@@ -73,7 +73,7 @@ Body
 }
 ```
 
-#### Register Seller
+### Register Seller
 
 ```
 {
@@ -96,7 +96,7 @@ Body
 }
 ```
 
-#### Register Customer
+### Register Customer
 
 POST /users/register/:role
 
@@ -123,7 +123,7 @@ Body
 }
 ```
 
-#### Verification Otp
+### Verification Otp
 
 POST /users/verif
 
@@ -146,7 +146,7 @@ Body
 }
 ```
 
-#### Forgot
+### Forgot
 
 POST /users/forgot
 
@@ -163,7 +163,7 @@ Body
 }
 ```
 
-#### Change Password
+### Change Password
 
 POST /users/forgort/:token
 
@@ -179,7 +179,7 @@ POST /users/forgort/:token
 }
 ```
 
-#### Get All User
+### Get All User
 
 GET /users/all
 
@@ -220,15 +220,14 @@ GET /users/all
  ],
 "message": "Success Get User"
 }
-``
+```
 
-#### Get By Id
+### Get By Id
 
 GET /users/user/:id_user
 
 ```
-
-```body
+body
 {
 "success": true,
 "statusCode": 200,
@@ -253,14 +252,13 @@ GET /users/user/:id_user
 }
 ```
 
-Profile
+### Update Profile Customer
 
 PUT /users/profile
 
 Body
 
-#### Update Profile Customer
-
+```
 {
 "success": true,
 "statusCode": 200,
@@ -275,15 +273,15 @@ Body
 },
 "message": "update data success"
 }
+```
 
-Profile
+### Update Profile Seller
 
 PUT /users/seller
 
 Body
 
-#### Update Profile Seller
-
+```
 {
 "success": true,
 "statusCode": 200,
@@ -295,15 +293,15 @@ Body
 },
 "message": "update data success"
 }
+```
 
-Profile
+### Update Photo
 
 PUT /users/edit
 
 Body
 
-#### Update Photo
-
+```
 {
 "success": true,
 "statusCode": 200,
@@ -314,6 +312,22 @@ Body
 ]
 "message": "Update Photo Success"
 }
+```
+
+### Delete User
+
+DELETE /users/:id_user
+
+Body
+
+```
+{
+    "success": true,
+    "statusCode": 200,
+    "data": "Delete user success",
+    "message": null
+}
+```
 
 ## Products
 
@@ -410,6 +424,7 @@ Body
 ],
 "message": "Get data success"
 }
+```
 
 ### Get By Category
 
@@ -417,6 +432,7 @@ GET /products/:category_id
 
 Body
 
+```
 {
 "success": true,
 "statusCode": 200,
@@ -464,4 +480,335 @@ Body
 },
 "message": "Insert data success"
 }
+```
+
+### Delete Product
+
+DELETE /products/:id_product
+
+Body
+
+```
+{
+    "success": true,
+    "statusCode": 200,
+    "data": "Delete product success",
+    "message": null
+}
+```
+
+## Transactions
+
+### Get All
+
+GET /transaction/
+
+Body
+
+```
+{
+    "success": true,
+    "statusCode": 200,
+    "data": [
+        {
+            "id_transaction": 39,
+            "product_id": 4,
+            "qty": 2,
+            "total": 130000,
+            "user_id": "c29f4a68-885e-460f-a7f9-5525fe9a73a9",
+            "name_product": "3Second Black",
+            "photo": "http://localhost:3500/img/photo-1675783827259.png",
+            "brand": "Outfit",
+            "price": 65000
+        }
+    ],
+    "message": "Get All Transaction Success"
+}
+```
+
+### Get By Id
+
+GET /transaction/:id_transaction
+
+Body
+
+```
+{
+    "success": true,
+    "statusCode": 200,
+    "data": [
+        {
+            "id_transaction": 39,
+            "product_id": 4,
+            "qty": 2,
+            "total": 130000,
+            "user_id": "c29f4a68-885e-460f-a7f9-5525fe9a73a9",
+            "name_product": "3Second Black",
+            "photo": "http://localhost:3500/img/photo-1675783827259.png",
+            "brand": "Outfit",
+            "price": 65000
+        }
+    ],
+    "message": "Get detail transaction success"
+}
+```
+
+### Add Transaction
+
+POST /transaction/add
+
+Body
+
+```
+{
+    "success": true,
+    "statusCode": 200,
+    "data": {
+        "product_id": 1,
+        "qty": 2,
+        "total": 60000,
+        "status": 1
+    },
+    "message": "Input transaction success"
+}
+```
+
+### Delete transaction
+
+DELETE /transaction/:id_transaction
+
+Body
+
+```
+{
+    "success": true,
+    "statusCode": 200,
+    "data": "Delete Transaction success",
+    "message": null
+}
+```
+
+## Category
+
+### Get All
+
+GET /category/
+
+Body
+
+```
+{
+    "success": true,
+    "statusCode": 200,
+    "data": [
+        {
+            "id_category": 5,
+            "name": "Baju",
+            "photo": "http://localhost:3500/img/photo-1675537789104.png"
+        },
+        {
+            "id_category": 3,
+            "name": "3Second",
+            "photo": "http://localhost:3500/img/photo-1674964838093.png"
+        },
+        {
+            "id_category": 4,
+            "name": "T-shirt",
+            "photo": "http://localhost:3500/img/photo-1675389827181.png"
+        }
+    ],
+    "message": "Get category success"
+}
+```
+
+### Get By Id
+
+GET /category/:id_category
+
+Body
+
+```
+{
+    "success": true,
+    "statusCode": 200,
+    "data": [
+        {
+            "id_category": 3,
+            "name": "3Second",
+            "photo": "http://localhost:3500/img/photo-1674964838093.png"
+        }
+    ],
+    "message": "Get detail category success"
+}
+```
+
+### Add Category
+
+POST /category/add
+
+Body
+
+```
+{
+    "success": true,
+    "statusCode": 200,
+    "data": [
+        {
+            "id_category": 3,
+            "name": "3Second",
+            "photo": "http://localhost:3500/img/photo-1674964838093.png"
+        }
+    ],
+    "message": "Insert Data Success"
+}
+```
+
+### Delete Category
+
+DELETE /category/:id_category
+
+Body
+
+```
+{
+    "success": true,
+    "statusCode": 200,
+    "data": "Delete Category success",
+    "message": null
+}
+```
+
+## Status
+
+### Get Status
+
+GET /status/
+
+Body
+
+```
+{
+    "success": true,
+    "statusCode": 200,
+    "data": [
+        {
+            "id_status": 1,
+            "name_status": "Shipping"
+        },
+        {
+            "id_status": 2,
+            "name_status": "Delivery"
+        }
+    ],
+    "message": "Get All Status Success"
+}
+```
+
+### Add Status
+
+POST /status/add
+
+Body
+
+```
+{
+    "success": true,
+    "statusCode": 200,
+    "data": [
+        {
+            "id_status": 1,
+            "name_status": "Shipping"
+        }
+    ]
+    "message":"Insert status success"
+}
+```
+
+## Checkout
+
+### Get All
+
+GET /checkout/all
+
+Body
+
+```
+{
+    "success": true,
+    "statusCode": 200,
+    "data": [
+        {
+            "id_checkout": 24,
+            "transaction_id": 39,
+            "product_id": 4,
+            "status_id": 2,
+            "user_id": "c29f4a68-885e-460f-a7f9-5525fe9a73a9",
+            "qty": 2,
+            "total": 130000,
+            "name_product": "3Second Black",
+            "price": 65000,
+            "photo": "http://localhost:3500/img/photo-1675783827259.png",
+            "name_status": "Delivery",
+            "name": "Alvin jamal",
+            "address": "Kp. Godebag Tasikmalaya"
+        }
+    ],
+    "message": "Get checkout success"
+}
+```
+
+### Get Chekout Done
+
+GET /checkout/done
+
+Body
+
+```
+{
+    "success": true,
+    "statusCode": 200,
+    "data": [
+        {
+            "id_checkout": 24,
+            "transaction_id": 39,
+            "product_id": 4,
+            "status_id": 2,
+            "user_id": "c29f4a68-885e-460f-a7f9-5525fe9a73a9",
+            "qty": 2,
+            "total": 130000,
+            "name_product": "3Second Black",
+            "price": 65000,
+            "photo": "http://localhost:3500/img/photo-1675783827259.png",
+            "name_status": "Delivery",
+            "name": "Alvin jamal",
+            "address": "Kp. Godebag Tasikmalaya"
+        }
+    ],
+    "message": "Get checkout success"
+}
+```
+
+### GEt By Id
+
+GET /checkout/:id_checkout
+
+Body
+
+```
+{
+    "success": true,
+    "statusCode": 200,
+    "data": [],
+    "message": "get checkout success"
+}
+```
+
+### Add Checkout
+
+POST /checkout/post
+
+Body
+
+```
+
 ```
