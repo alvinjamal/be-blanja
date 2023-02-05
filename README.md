@@ -1,8 +1,9 @@
 # Store.id Backend
 
 <p align='center'>
-https://github.com/alvinjamal/be-blanja/blob/main/ss/toko.png
+<img height="150" src="https://github.com/alvinjamal/be-blanja/blob/main/ss/toko.png" />
 </p>
+
 # Run Locally
 
 Clone the project
