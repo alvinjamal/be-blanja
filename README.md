@@ -161,57 +161,56 @@ Body
 "message": "change password success"
 }
 
-Get Users
+### Get All User
 
 GET /users/all
 
-Body
-
-### Get All User
-
+```Body
 "success": true,
 "statusCode": 200,
 "data": [
 {
-"id_user": "7b3aaf8b-e58f-424a-a9aa-b229e54da730",
-"name": "Alvin Azkya",
-"email": "alvinjamal.azkya@gmail.com",
-"phone": "0852",
-"password": "$2a$10$tSwilP24WkMPwkqSj5jmT.iZPt9Y9U9rqw9pq00njnX.G0yC5qrDa",
-"role": "seller",
-"store": "Outfit Store",
-"date": "23 November 2001",
-"gender": "Laki-Laki",
-"address": "Tasikmalaya Jawa Barat",
-"verif": "1",
-"otp": "666953",
-"photo": "http://res.cloudinary.com/diunwoak6/image/upload/v1675220846/toko/abagjphwujq4twtsa16h.jpg"
+   "id_user": "7b3aaf8b-e58f-424a-a9aa-b229e54da730",
+   "name": "Alvin Azkya",
+   "email": "alvinjamal.azkya@gmail.com",
+   "phone": "0852",
+   "password": "$2a$10$tSwilP24WkMPwkqSj5jmT.iZPt9Y9U9rqw9pq00njnX.G0yC5qrDa",
+   "role": "seller",
+   "store": "Outfit Store",
+   "date": "23 November 2001",
+   "gender": "Laki-Laki",
+   "address": "Tasikmalaya Jawa Barat",
+   "verif": "1",
+   "otp": "666953",
+   "photo": "http://res.cloudinary.com/diunwoak6/image/upload/v1675220846/toko/abagjphwujq4twtsa16h.jpg"
 },
-{
-"id_user": "c29f4a68-885e-460f-a7f9-5525fe9a73a9",
-"name": "Alvin jamal",
-"email": "alvinjamalazkya@gmail.com",
-"phone": "083816767374",
-"password": "$2a$10$MoPh1smj0zZssB2JTyKrhOlmiS2T4Nvvxzkp/XbZeNFa7fCIcpfe.",
-"role": "Customer",
-"store": "undefined",
-"date": "23 November 2001",
-"gender": "Laki-Laki",
-"address": "Kp. Godebag Tasikmalaya",
-"verif": "1",
-"otp": "011197",
-"photo": "http://res.cloudinary.com/diunwoak6/image/upload/v1675220694/toko/r3w7arumtefj8zb1tcz9.png"
-}
-],
+  {
+   "id_user": "c29f4a68-885e-460f-a7f9-5525fe9a73a9",
+   "name": "Alvin jamal",
+   "email": "alvinjamalazkya@gmail.com",
+   "phone": "083816767374",
+   "password": "$2a$10$MoPh1smj0zZssB2JTyKrhOlmiS2T4Nvvxzkp/XbZeNFa7fCIcpfe.",
+   "role": "Customer",
+   "store": "undefined",
+   "date": "23 November 2001",
+   "gender": "Laki-Laki",
+   "address": "Kp. Godebag Tasikmalaya",
+   "verif": "1",
+   "otp": "011197",
+   "photo": "http://res.cloudinary.com/diunwoak6/image/upload/v1675220694/toko/r3w7arumtefj8zb1tcz9.png"
+  }
+ ],
 "message": "Success Get User"
 }
+``
 
 #### Get By Id
 
 GET /users/user/:id_user
 
-````
- ```body
+```
+
+```body
 {
 "success": true,
 "statusCode": 200,
@@ -234,7 +233,7 @@ GET /users/user/:id_user
 ],
 "message": "Success Get User By Token"
 }
-````
+```
 
 Profile
 
