@@ -103,14 +103,13 @@ Body
 }
 ```
 
-Verification Otp
+### Verification Otp
 
 POST /users/verif
 
 Body
 
-### Verification Otp
-
+```
 {
 "success": true,
 "statusCode": 200,
@@ -125,15 +124,15 @@ Body
 },
 "message": " verification email success"
 }
+```
 
-Forgot Password
+### Forgot
 
 POST /users/forgot
 
 Body
 
-### Forgot
-
+```
 {
 "success": true,
 "statusCode": 200,
@@ -142,15 +141,13 @@ Body
 }
 "message": "send email success"
 }
-
-Change Password
-
-POST /users/forgort/:token
-
-Body
+```
 
 ### Change Password
 
+POST /users/forgort/:token
+
+```Body
 {
 "success": true,
 "statusCode": 200,
@@ -160,6 +157,7 @@ Body
 }
 "message": "change password success"
 }
+```
 
 ### Get All User
 
