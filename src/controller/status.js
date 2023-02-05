@@ -9,6 +9,13 @@ const statusController = {
       .then(() => resp(res, 200, true, "Insert status success"))
       .catch((err) => response(res, 404, false, err, "Insert status fail"));
   },
+  getStatus: (req, res) => {
+    ModelStatus.getAll()
+      .then((result) =>
+        response(res, 200, true, result.rows, "Get All Status Success")
+      )
+      .catch((err) => response(res, 404, false, err, "Get All Status Failed"));
+  },
 };
 
 exports.statusController = statusController;

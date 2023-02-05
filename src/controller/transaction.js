@@ -17,12 +17,14 @@ const transactionController = {
       );
   },
   deleteTransaction: (req, res) => {
-    modelTransaction
-      .deleteTransaction(req.params.id_transaction)
-      .then(() => response(res, 200, true, "Delete transaction success"))
-      .catch((err) =>
-        response(res, 404, false, err, "Delete transaction failed")
-      );
+    try {
+      modelTransaction
+        .deleteTransaction(req.params.id_transaction)
+        .then(() => response(res, 200, true, "Delete Transaction success"));
+    } catch (error) {
+      console.log(error);
+      response(res, 404, false, "Delete Transaction failed");
+    }
   },
 
   getTransactionDetail: (req, res) => {

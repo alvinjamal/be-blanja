@@ -104,6 +104,10 @@ const updateProfile = (id_user, name, email, phone, gender, date, address) =>
     )
   );
 
+const getAllUser = () => {
+  return Pool.query(`SELECT * FROM users`);
+};
+
 const updateProfileSeller = ({ id_user, store, email, phone }) =>
   new Promise((resolve, reject) =>
     Pool.query(
@@ -126,14 +130,20 @@ const updatePhotoProfile = (id_user, update) => {
   );
 };
 
+const deleteUser = (id_user) => {
+  return Pool.query(`DELETE FROM users where id_user='${id_user}'`);
+};
+
 module.exports = {
   create,
   findEmail,
   verification,
   changePassword,
   findUsers,
+  getAllUser,
   getUserById,
   updatePhotoProfile,
   updateProfile,
   updateProfileSeller,
+  deleteUser,
 };

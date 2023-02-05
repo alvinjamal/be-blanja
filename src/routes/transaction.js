@@ -7,10 +7,6 @@ router.get("/", protect, transactionController.getTransactionAll);
 router.post("/add", protect, transactionController.insertTransaction);
 router.get("/:id_transaction", transactionController.getTransactionDetail);
 router.put("/:id_transaction", transactionController.updateTransaction);
-router.delete(
-  "/:id_transaction",
-  protect,
-  transactionController.deleteTransaction
-);
+router.delete("/:id_transaction", transactionController.deleteTransaction);
 
 module.exports = router;

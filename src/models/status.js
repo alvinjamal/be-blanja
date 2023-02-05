@@ -1,3 +1,4 @@
+const pool = require("../config/db");
 const Pool = require("../config/db");
 
 const postStatus = (data) => {
@@ -7,6 +8,11 @@ const postStatus = (data) => {
   );
 };
 
+const getAll = () => {
+  return Pool.query(`SELECT * FROM status`);
+};
+
 module.exports = {
   postStatus,
+  getAll,
 };

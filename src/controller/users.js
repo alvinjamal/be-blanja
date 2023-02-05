@@ -4,11 +4,13 @@ const {
   findEmail,
   verification,
   changePassword,
+  getAllUser,
   getUserById,
   findUsers,
   updateProfile,
   updateProfileSeller,
   updatePhotoProfile,
+  deleteUser,
 } = require("../models/users");
 const bcrypt = require("bcryptjs");
 const { v4: uuidv4 } = require("uuid");
@@ -178,19 +180,28 @@ const UsersController = {
     }
     let password = bcrypt.hashSync(req.body.password);
     const result = await changePassword(decoded.email, password);
-    return response(res, 200, true, result, " change password email success");
+    return response(res, 200, true, result, " change password success");
   },
 
   getUser: async (req, res) => {
     try {
-      const id = req.payload.id_user;
-      console.log(id);
-      const result = await getUserById(id);
+      const id_user = req.payload.id_user;
+      const result = await getUserById(id_user);
       response(res, 200, true, result.rows, "Success Get User By Token");
     } catch (error) {
       response(res, 400, false, error, "Get User By Token Fail");
     }
   },
+
+  getAll: async (req, res) => {
+    try {
+      const result = await getAllUser();
+      response(res, 200, true, result.rows, "Success Get User");
+    } catch (error) {
+      response(res, 400, false, error, "Get User Fail");
+    }
+  },
+
   editProfile: async (req, res) => {
     try {
       const { name, email, phone, gender, date, address } = req.body;
@@ -263,6 +274,17 @@ const UsersController = {
     } catch (error) {
       console.log(error);
       response(res, 404, false, error, "update data failed");
+    }
+  },
+
+  delete: (req, res) => {
+    try {
+      deleteUser(req.params.id_user).then(() =>
+        response(res, 200, true, "Delete user success")
+      );
+    } catch (error) {
+      console.log(error);
+      response(res, 404, false, "Delete user failed");
     }
   },
 };

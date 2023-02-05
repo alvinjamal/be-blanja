@@ -25,6 +25,10 @@ const selectDatabyId = (id) =>
       }
     );
   });
+
+const deleteProduct = (id_product) =>
+  Pool.query(`DELETE FROM products where id_product='${id_product}'`);
+
 const insertData = (user_id, postData) => {
   const { name_product, stock, price, photo, brand, category_id } = postData;
   return Pool.query(
@@ -37,10 +41,6 @@ const updateData = (id_product, data) => {
   return Pool.query(
     `UPDATE products SET name_product='${name_product}',stock='${stock}',price='${price}',photo='${photo}',brand='${brand}' WHERE id_product='${id_product}'`
   );
-};
-
-const deleteData = (id_product) => {
-  return Pool.query(`DELETE FROM products where id_product='${id_product}'`);
 };
 
 const selectDataProductbyCategory = (category_id) =>
@@ -62,8 +62,8 @@ const selectDataProductbyCategory = (category_id) =>
 module.exports = {
   selectData,
   insertData,
-  deleteData,
   updateData,
+  deleteProduct,
   selectDatabyId,
   selectDataProductbyCategory,
 };

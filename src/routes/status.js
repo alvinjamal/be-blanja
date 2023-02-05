@@ -7,5 +7,6 @@ const upload = require("../middlewares/upload");
 // const {hitCache,clearCache}  = require("../middlewares/redis");
 
 router.post("/add", statusController.insertStatus);
+router.get("/", statusController.getStatus);
 
 module.exports = router;

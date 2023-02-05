@@ -8,7 +8,8 @@ const size = require("../middlewares/sizeUpload");
 router.post("/login", UsersController.login);
 router.post("/verification", UsersController.verificationOtp);
 router.post("/forgot", UsersController.forgotPassword);
-router.get("/profile", protect, UsersController.getUser);
+router.get("/all", UsersController.getAll);
+router.get("/user", protect, UsersController.getUser);
 router.put(
   "/profile",
   protect,
@@ -24,5 +25,7 @@ router.put(
 router.put("/edit", upload.single("photo"), protect, UsersController.putPhoto);
 router.post("/register/:role", role, UsersController.register);
 router.post("/forgot/:token", UsersController.resetPassword);
+
+router.delete("/delete/:id_user", UsersController.delete);
 
 module.exports = router;

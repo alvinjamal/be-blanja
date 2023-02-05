@@ -20,10 +20,16 @@ const CategoryController = {
     }
   },
   deleteCategory: (req, res) => {
-    ModelCategory.deleteCategory(req.params.id_category)
-      .then(() => resp(res, 200, true, "Delete category success"))
-      .catch((err) => response(res, 404, false, err, "Delete category failed"));
+    try {
+      ModelCategory.deleteCategory(req.params.id_category).then(() =>
+        response(res, 200, true, "Delete Category success")
+      );
+    } catch (error) {
+      console.log(error);
+      response(res, 404, false, "Delete Category failed");
+    }
   },
+
   getCategory: (_req, res) => {
     ModelCategory.selectCategory()
       .then((result) =>

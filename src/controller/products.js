@@ -17,13 +17,7 @@ const ProductController = {
       .then((result) => response(res, 200, true, result, "update data success"))
       .catch((err) => response(res, 404, false, err, "get data fail"));
   },
-  delete: (req, res, next) => {
-    ModelProduct.deleteData(req.params.id_product)
-      .then((result) =>
-        response(res, 200, true, req.params, "delete data success")
-      )
-      .catch((err) => response(res, 404, false, err, "get data fail"));
-  },
+
   getProduct: async (req, res, next) => {
     try {
       const page = Number(req.query.page) || 1;
@@ -83,6 +77,17 @@ const ProductController = {
         response(res, 200, true, req.body, "Insert data success")
       )
       .catch((err) => response(res, 404, false, err, "Insert data fail"));
+  },
+
+  delete: (req, res) => {
+    try {
+      ModelProduct.deleteProduct(req.params.id_product).then(() =>
+        response(res, 200, true, "Delete product success")
+      );
+    } catch (error) {
+      console.log(error);
+      response(res, 404, false, "Delete Product failed");
+    }
   },
 };
 
