@@ -53,7 +53,7 @@ Body
 
 ### Seller
 
-...
+```
 {
 "success": true,
 "statusCode": 200,
@@ -72,7 +72,7 @@ Body
 },
 "message": "Login Success"
 }
-...
+```
 
 Register
 
@@ -82,7 +82,7 @@ Body
 
 ### Customer
 
-...
+```
 {
 "success": true,
 "statusCode": 200,
@@ -101,7 +101,7 @@ Body
 },
 "message": "Login Success"
 }
-...
+```
 
 Verification Otp
 
@@ -209,8 +209,9 @@ Body
 #### Get By Id
 
 GET /users/user/:id_user
-...
-Body
+
+````
+ ```body
 {
 "success": true,
 "statusCode": 200,
@@ -233,7 +234,7 @@ Body
 ],
 "message": "Success Get User By Token"
 }
-...
+````
 
 Profile
 
