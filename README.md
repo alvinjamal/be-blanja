@@ -8,7 +8,7 @@
 
 Clone the project
 
-https://github.com/alvinjamal/be-blanja.git
+git clone : https://github.com/alvinjamal/be-blanja.git
 
 Go to the project directory
 
