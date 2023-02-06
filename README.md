@@ -25,7 +25,7 @@ npm run dev
 Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file Start the server
-
+```
 MAIL_USERNAME=
 MAIL_PASSWORD=
 OAUTH_CLIENTID=
@@ -43,7 +43,7 @@ HOST=
 PHOTO_NAME=
 PHOTO_KEY=
 PHOTO_SECRET=
-
+```
 ## Users
 
 ### Login
