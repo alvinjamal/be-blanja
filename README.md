@@ -11,17 +11,17 @@ Clone the project
 git clone : https://github.com/alvinjamal/be-blanja.git
 
 Go to the project directory
-
+```
 cd be-blanja
-
+```
 Install dependencies
-
+```
 npm install
-
+```
 Start the server
-
+```
 npm run dev
-
+```
 Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file Start the server
