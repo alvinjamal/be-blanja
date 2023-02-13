@@ -29,17 +29,41 @@ const selectDatabyId = (id) =>
 const deleteProduct = (id_product) =>
   Pool.query(`DELETE FROM products where id_product='${id_product}'`);
 
-const insertData = (user_id, postData) => {
-  const { name_product, stock, price, photo, brand, category_id } = postData;
+const insertData = (user_id, updateData) => {
+  const { name_product, stock, price, photo, brand, category_id } = updateData;
   return Pool.query(
     `INSERT INTO products(name_product,stock,price,photo,brand,category_id,user_id) VALUES('${name_product}',${stock},${price},'${photo}','${brand}',${category_id},'${user_id}')`
   );
 };
 
+// const findUsers = (id_product) =>
+//   new Promise((resolve, reject) =>
+//     Pool.query(
+//       `SELECT * FROM products where id_product='${id_product}'`,
+//       (err, result) => {
+//         if (!err) {
+//           resolve(result);
+//         } else {
+//           reject(err);
+//         }
+//       }
+//     )
+//   );
+
 const updateData = (id_product, data) => {
-  const { name_product, stock, price, photo, brand } = data;
-  return Pool.query(
-    `UPDATE products SET name_product='${name_product}',stock='${stock}',price='${price}',photo='${photo}',brand='${brand}' WHERE id_product='${id_product}'`
+  const { name_product, stock, price, brand, category_id } = data;
+  new Promise((resolve, reject) =>
+    Pool.query(
+      `UPDATE products SET name_product = COALESCE($2, name_product), stock = COALESCE($3, stock), price = COALESCE($4, price),  brand = COALESCE($5, brand), category_id = COALESCE($6, category_id) where id_product = $1`,
+      [id_product, name_product, stock, price, brand, category_id],
+      (err, result) => {
+        if (!err) {
+          resolve(result);
+        } else {
+          reject(err);
+        }
+      }
+    )
   );
 };
 
@@ -63,6 +87,7 @@ module.exports = {
   selectData,
   insertData,
   updateData,
+  // findUsers,
   deleteProduct,
   selectDatabyId,
   selectDataProductbyCategory,

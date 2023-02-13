@@ -22,7 +22,7 @@ router.put(
   upload.single("photo"),
   UsersController.editProfileSeller
 );
-router.put("/edit", upload.single("photo"), protect, UsersController.putPhoto);
+router.put("/edit", protect, upload.single("photo"), UsersController.putPhoto);
 router.post("/register/:role", role, UsersController.register);
 router.post("/forgot/:token", UsersController.resetPassword);
 

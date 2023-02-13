@@ -1,23 +1,8 @@
 const ModelProduct = require("../models/products");
 const { response } = require("../middlewares/common");
+const cloudinary = require("../config/photo");
 
 const ProductController = {
-  update: (req, res, next) => {
-    const Port = process.env.PORT;
-    const Host = process.env.HOST;
-    const photo = req.file.filename;
-    const uri = `http://${Host}:${Port}/img/${photo}`;
-    req.body.photo = uri;
-    req.body.name_product = req.body.name_product;
-    req.body.stock = parseInt(req.body.stock);
-    req.body.price = parseInt(req.body.price);
-    req.body.brand = req.body.brand;
-    req.body.category_id = parseInt(req.body.category_id);
-    ModelProduct.updateData(req.params.id_product, req.body)
-      .then((result) => response(res, 200, true, result, "update data success"))
-      .catch((err) => response(res, 404, false, err, "get data fail"));
-  },
-
   getProduct: async (req, res, next) => {
     try {
       const page = Number(req.query.page) || 1;
@@ -77,6 +62,29 @@ const ProductController = {
         response(res, 200, true, req.body, "Insert data success")
       )
       .catch((err) => response(res, 404, false, err, "Insert data fail"));
+  },
+
+  update: async (req, res) => {
+    try {
+      const id_product = req.params.id_product;
+      // const image = await cloudinary.uploader.upload(req.file.path, {
+      //   folder: "Store.id",
+      // });
+
+      const data = {
+        name_product: req.body.name_product,
+        stock: req.body.stock,
+        price: req.body.price,
+        category_id: req.body.category_id,
+        // photo: image.url,
+      };
+
+      await ModelProduct.updateData(id_product, data);
+      response(res, 200, true, data, "update data success");
+    } catch (error) {
+      console.log(error);
+      response(res, 404, false, "update data failed");
+    }
   },
 
   delete: (req, res) => {

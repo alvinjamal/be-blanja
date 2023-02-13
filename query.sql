@@ -141,3 +141,5 @@ INSERT INTO users(id,email,password,fullname,role) VALUES('1','ean@ean.id','1234
 SELECT * FROM users where email='alvinjamalazkya@gmail.com';
 
 ALTER TABLE products ADD photo VARCHAR(255);
+
+UPDATE products SET (id_product,name_product,stock,price,photo,brand) VALUES(6,'black',20,2000,0,storevi) 

@@ -6,7 +6,7 @@ const { protect } = require("../middlewares/auth");
 const upload = require("../middlewares/upload");
 // const {hitCache,clearCache}  = require("../middlewares/redis");
 
-router.get("/", CategoryController.getCategory);
+router.get("/", protect, CategoryController.getCategory);
 router.get("/:id_category", CategoryController.getCategoryDetail);
 router.post("/add", protect, upload.single("photo"), CategoryController.insert);
 router.put("/:id_category", CategoryController.updateCategory);

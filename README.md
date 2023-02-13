@@ -497,6 +497,24 @@ Body
 }
 ```
 
+### Update Product
+
+PUT /products/update/:id_product
+
+Body
+
+```
+{
+    "success": true,
+    "statusCode": 200,
+    "data": {
+        "stock": "80",
+        "price": "80000",
+    },
+    "message": "update data success"
+}
+```
+
 ## Transactions
 
 ### Get All
