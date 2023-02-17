@@ -4,7 +4,6 @@ const morgan = require("morgan");
 const cors = require("cors");
 require("dotenv").config();
 const xss = require("xss-clean");
-const helmet = require("helmet");
 const { response } = require("./src/middlewares/common");
 const app = express();
 const upload = require("./src/middlewares/upload");
@@ -12,19 +11,7 @@ const upload = require("./src/middlewares/upload");
 const mainRouter = require("./src/routes/index");
 
 app.use(morgan("dev"));
-app.use(
-  helmet({
-    crossOriginEmbedderPolicy: false,
-    crossOriginResourcePolicy: false,
-  })
-);
-// app.use(cors("*"));
-const corsOptions = {
-  origin: "https://storeid-alvin.netlify.app",
-  credentials: true,
-  optionSuccessStatus: 200,
-};
-app.use(cors(corsOptions));
+app.use(cors("*"));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
