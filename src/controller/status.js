@@ -7,14 +7,14 @@ const statusController = {
     req.body.name_status = parseInt(req.body.name_status);
     ModelStatus.postStatus(req.body)
       .then(() => resp(res, 200, true, "Insert status success"))
-      .catch((err) => response(res, 404, false, err, "Insert status fail"));
+      .catch((err) => response(res, 500, false, err, "Insert status fail"));
   },
   getStatus: (req, res) => {
     ModelStatus.getAll()
       .then((result) =>
         response(res, 200, true, result.rows, "Get All Status Success")
       )
-      .catch((err) => response(res, 404, false, err, "Get All Status Failed"));
+      .catch((err) => response(res, 500, false, err, "Get All Status Failed"));
   },
 };
 

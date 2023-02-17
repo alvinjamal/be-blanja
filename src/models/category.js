@@ -21,10 +21,21 @@ const insertCategory = (dataCategory) => {
     `INSERT INTO category(name,photo)VALUES('${name}','${photo}')`
   );
 };
+
 const updateCategory = (id_category, data) => {
   const { name, photo } = data;
-  return Pool.query(
-    `UPDATE category SET name='${name}',photo='${photo}' WHERE id_category=${id_category}`
+  new Promise((resolve, reject) =>
+    Pool.query(
+      `UPDATE category SET name = COALESCE($2, name), photo = COALESCE($3, photo) where id_category = $1`,
+      [id_category, name, photo],
+      (err, result) => {
+        if (!err) {
+          resolve(result);
+        } else {
+          reject(err);
+        }
+      }
+    )
   );
 };
 

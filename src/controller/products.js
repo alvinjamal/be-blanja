@@ -21,7 +21,7 @@ const ProductController = {
       response(res, 200, true, result.rows, "Get Data Success");
     } catch (err) {
       console.log(err);
-      response(res, 404, false, err, "Get Data Fail");
+      response(res, 500, false, err, "Get Data Fail");
     }
   },
 
@@ -33,7 +33,7 @@ const ProductController = {
       response(res, 200, true, result.rows, "Get Product by Category success");
     } catch (error) {
       console.log(error);
-      response(res, 404, false, "Get Product by Category failed");
+      response(res, 500, false, "Get Product by Category failed");
     }
   },
 
@@ -42,7 +42,7 @@ const ProductController = {
       .then((result) =>
         response(res, 200, true, result.rows, "Get data success")
       )
-      .catch((err) => response(res, 404, false, err, "Get data fail"));
+      .catch((err) => response(res, 500, false, err, "Get data fail"));
   },
 
   insert: (req, res, next) => {
@@ -61,7 +61,7 @@ const ProductController = {
       .then((result) =>
         response(res, 200, true, req.body, "Insert data success")
       )
-      .catch((err) => response(res, 404, false, err, "Insert data fail"));
+      .catch((err) => response(res, 500, false, err, "Insert data fail"));
   },
 
   update: async (req, res) => {
@@ -83,7 +83,7 @@ const ProductController = {
       response(res, 200, true, data, "update data success");
     } catch (error) {
       console.log(error);
-      response(res, 404, false, "update data failed");
+      response(res, 500, false, "update data failed");
     }
   },
 
@@ -94,7 +94,7 @@ const ProductController = {
       );
     } catch (error) {
       console.log(error);
-      response(res, 404, false, "Delete Product failed");
+      response(res, 500, false, "Delete Product failed");
     }
   },
 };

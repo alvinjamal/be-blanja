@@ -88,7 +88,8 @@ const getUserById = (id_user) => {
   console.log(id_user);
   return Pool.query(`SELECT * FROM users WHERE id_user = '${id_user}'`);
 };
-const updateProfile = (id_user, name, email, phone, gender, date, address) =>
+const updateProfile = (data) => {
+  const { id_user, name, email, phone, gender, date, address } = data;
   new Promise((resolve, reject) =>
     Pool.query(
       `UPDATE users SET name = COALESCE($2, name), email = COALESCE($3, email), phone = COALESCE($4, phone),
@@ -103,16 +104,17 @@ const updateProfile = (id_user, name, email, phone, gender, date, address) =>
       }
     )
   );
+};
 
 const getAllUser = () => {
   return Pool.query(`SELECT * FROM users`);
 };
 
-const updateProfileSeller = ({ id_user, store, email, phone }) =>
+const updateProfileSeller = ({ id_user, store, address, email, phone }) =>
   new Promise((resolve, reject) =>
     Pool.query(
-      `UPDATE users SET store = COALESCE($2, store), email = COALESCE($3, email), phone = COALESCE($4, phone) WHERE id_user = $1`,
-      [id_user, store, email, phone],
+      `UPDATE users SET store = COALESCE($2, store), address = COALESCE($3, address), email = COALESCE($4, email), phone = COALESCE($5, phone) WHERE id_user = $1`,
+      [id_user, store, address, email, phone],
       (err, result) => {
         if (!err) {
           resolve(result);

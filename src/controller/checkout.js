@@ -47,10 +47,10 @@ const checkoutController = {
     try {
       const user_id = req.payload.id_user;
       const result = await ModelCheckout.selectCheckout(user_id, search);
-      response(res, 200, true, result.rows, "Get checkout success");
+      response(res, 200, true, result.rows, "Get All checkout success");
     } catch (err) {
       console.log(err);
-      response(res, 404, false, err, "Get checkout fail");
+      response(res, 404, false, err, "Get All checkout fail");
     }
   },
   getCheckoutDone: async (req, res) => {

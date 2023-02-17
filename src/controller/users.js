@@ -29,7 +29,7 @@ const UsersController = {
     let role = req.params.role;
 
     if (users) {
-      return response(res, 404, false, "email already use", " register fail");
+      return response(res, 500, false, "Email Already Use", " Register Fail");
     }
 
     // create otp
@@ -62,19 +62,19 @@ const UsersController = {
         const subject = `${otp} is your otp`;
         let sendEmail = email(req.body.email, subject, text);
         if (sendEmail == "email not sent!") {
-          return response(res, 404, false, null, "register fail");
+          return response(res, 500, false, null, "Register Fail");
         }
         response(
           res,
           200,
           true,
           { email: req.body.email },
-          "register success please check your email"
+          "Register Success Please Check Your Email"
         );
       }
     } catch (err) {
       console.log(err);
-      response(res, 404, false, err, " register fail");
+      response(res, 500, false, err, " Register Fail");
     }
   },
 
@@ -83,11 +83,11 @@ const UsersController = {
       rows: [users],
     } = await findEmail(req.body.email);
     if (!users) {
-      return resp(res, 404, false, "Email not found");
+      return resp(res, 500, false, "Email not found");
     }
     const { refreshToken } = req.body;
     if (!refreshToken) {
-      return resp(res, 404, false, "Wrong refresh token ");
+      return resp(res, 500, false, "Wrong refresh token ");
     }
     const payload = {
       id_user: users.id_user,
@@ -103,15 +103,15 @@ const UsersController = {
       rows: [users],
     } = await findEmail(req.body.email);
     if (!users) {
-      return response(res, 404, false, null, " email not found");
+      return response(res, 500, false, null, " email not found");
     }
     if (users.verif == 0) {
-      return response(res, 404, false, null, " email not verified");
+      return response(res, 500, false, null, " email not verified");
     }
     const password = req.body.password;
     const validation = bcrypt.compareSync(password, users.password);
     if (!validation) {
-      return response(res, 404, false, null, "wrong password");
+      return response(res, 500, false, null, "wrong password");
     }
     delete users.password;
     delete users.otp;
@@ -132,19 +132,19 @@ const UsersController = {
       rows: [users],
     } = await findEmail(email);
     if (!users) {
-      return response(res, 404, false, null, " email not found");
+      return response(res, 500, false, null, " Email Not Found");
     }
 
     if (users.otp == otp) {
       const result = await verification(req.body.email);
-      return response(res, 200, true, result, " verification email success");
+      return response(res, 200, true, result, " Verification email Success");
     }
     return response(
       res,
-      404,
+      500,
       false,
       null,
-      " wrong otp please check your email"
+      " Wrong otp please check your email"
     );
   },
 
@@ -153,7 +153,7 @@ const UsersController = {
       rows: [users],
     } = await findEmail(req.body.email);
     if (!users) {
-      return response(res, 404, false, null, " email not found");
+      return response(res, 500, false, null, " email not found");
     }
     let payload = {
       email: req.body.email,
@@ -163,10 +163,10 @@ const UsersController = {
     let text = `Hello ${users.name} \n please click link below to reset password ${process.env.API}forgot/${token}`;
     const subject = `Reset Password`;
     let sendEmail = email(req.body.email, subject, text);
-    if (sendEmail == "email not sent!") {
-      return response(res, 404, false, null, "email fail");
+    if (sendEmail == "Email not sent!") {
+      return response(res, 500, false, null, "email fail");
     }
-    return response(res, 200, true, null, "send email success");
+    return response(res, 200, true, null, "Send email success");
   },
 
   resetPassword: async (req, res) => {
@@ -176,11 +176,11 @@ const UsersController = {
       rows: [users],
     } = await findEmail(decoded.email);
     if (!users) {
-      return response(res, 404, false, null, " email not found");
+      return response(res, 500, false, null, " email not found");
     }
     let password = bcrypt.hashSync(req.body.password);
     const result = await changePassword(decoded.email, password);
-    return response(res, 200, true, result, " change password success");
+    return response(res, 200, true, result, " Change Password success");
   },
 
   getUser: async (req, res) => {
@@ -212,7 +212,7 @@ const UsersController = {
       } = await findUsers(id_user);
 
       if (!users) {
-        response(res, 404, false, null, "User tidak ditemukan");
+        response(res, 500, false, null, "User tidak ditemukan");
       } else {
         const dataProfile = {
           id_user,
@@ -229,7 +229,7 @@ const UsersController = {
       }
     } catch (error) {
       console.log(error);
-      response(res, 404, false, "update data failed");
+      response(res, 500, false, "update data failed");
     }
   },
   putPhoto: async (req, res) => {
@@ -245,12 +245,12 @@ const UsersController = {
       await updatePhotoProfile(id_user, update);
       return response(res, 200, true, req.body, "Update Photo Success");
     } catch (err) {
-      return response(res, 404, false, err, "Update Photo Fail");
+      return response(res, 500, false, err, "Update Photo Fail");
     }
   },
   editProfileSeller: async (req, res) => {
     try {
-      const { store, email, phone } = req.body;
+      const { store, address, email, phone } = req.body;
       const { id_user } = req.payload;
       console.log(id_user);
 
@@ -259,12 +259,13 @@ const UsersController = {
       } = await findUsers(id_user);
 
       if (!users) {
-        response(res, 404, false, null, "User not found");
+        response(res, 500, false, null, "User not found");
       } else {
         const dataProfileSeller = {
           id_user,
           store: store || null,
           email: email || null,
+          address: address || null,
           phone: phone || null,
         };
 
@@ -273,7 +274,7 @@ const UsersController = {
       }
     } catch (error) {
       console.log(error);
-      response(res, 404, false, error, "update data failed");
+      response(res, 500, false, error, "update data failed");
     }
   },
 
@@ -284,7 +285,7 @@ const UsersController = {
       );
     } catch (error) {
       console.log(error);
-      response(res, 404, false, "Delete user failed");
+      response(res, 500, false, "Delete user failed");
     }
   },
 };

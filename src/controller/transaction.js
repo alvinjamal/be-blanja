@@ -13,7 +13,7 @@ const transactionController = {
       .updateTransaction(req.params.id_transaction, req.body)
       .then(() => resp(res, 200, true, "Update transaction success"))
       .catch((err) =>
-        response(res, 404, false, err, "Update transaction failed")
+        response(res, 500, false, err, "Update transaction failed")
       );
   },
   deleteTransaction: (req, res) => {
@@ -23,7 +23,7 @@ const transactionController = {
         .then(() => response(res, 200, true, "Delete Transaction success"));
     } catch (error) {
       console.log(error);
-      response(res, 404, false, "Delete Transaction failed");
+      response(res, 500, false, "Delete Transaction failed");
     }
   },
 
@@ -34,7 +34,7 @@ const transactionController = {
         response(res, 200, true, result, "Get detail transaction success")
       )
       .catch((err) =>
-        response(res, 404, false, err, "Get detail transaction failed")
+        response(res, 500, false, err, "Get detail transaction failed")
       );
   },
 
@@ -46,7 +46,7 @@ const transactionController = {
         response(res, 200, true, result.rows, "Get All Transaction Success")
       )
       .catch((err) =>
-        response(res, 404, false, err, "Get All Transaction Failed")
+        response(res, 500, false, err, "Get All Transaction Failed")
       );
   },
 
@@ -61,7 +61,7 @@ const transactionController = {
       return response(res, 200, true, req.body, "Input transaction success");
     } catch (err) {
       console.log(err);
-      return response(res, 404, false, err, "Input transaction fail");
+      return response(res, 500, false, err, "Input transaction fail");
     }
   },
 };

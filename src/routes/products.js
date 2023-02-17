@@ -13,8 +13,8 @@ router.put(
   //   upload.single("photo"),
   ProductController.update
 );
+router.get("/category/:category_id", ProductController.getProductByCategory);
 router.get("/:id_product", ProductController.getProductDetail);
-router.get("/:category_id", ProductController.getProductByCategory);
 
 router.delete("/delete/:id_product", ProductController.delete);
 
