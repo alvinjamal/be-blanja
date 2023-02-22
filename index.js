@@ -23,7 +23,7 @@ app.use("/img", express.static("./upload"));
 app.use(upload.array());
 
 app.all("*", (req, res, next) => {
-  response(res, 404, false, null, "404 Not Found");
+  response(res, 500, false, null, "500 Not Found");
 });
 
 app.get("/", (req, res, next) => {

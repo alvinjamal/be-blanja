@@ -13,7 +13,7 @@ const checkoutController = {
       return response(res, 200, true, req.body, "Input checkout succes");
     } catch (err) {
       console.log(err);
-      return response(res, 404, false, err, "Input checkout fail");
+      return response(res, 500, false, err, "Input checkout fail");
     }
   },
   putStatus: async (req, res) => {
@@ -28,7 +28,7 @@ const checkoutController = {
       return response(res, 200, true, rows, "Put status checkout success");
     } catch (err) {
       console.log(err);
-      response(res, 404, false, err, "Put status checkout fail");
+      response(res, 500, false, err, "Put status checkout fail");
     }
   },
   putStatusId: async (req, res) => {
@@ -39,7 +39,7 @@ const checkoutController = {
       return response(res, 200, true, rows, "Put status checkout success");
     } catch (err) {
       console.log(err);
-      response(res, 404, false, err, "Put status checkout fail");
+      response(res, 500, false, err, "Put status checkout fail");
     }
   },
   getCheckout: async (req, res) => {
@@ -50,7 +50,7 @@ const checkoutController = {
       response(res, 200, true, result.rows, "Get All checkout success");
     } catch (err) {
       console.log(err);
-      response(res, 404, false, err, "Get All checkout fail");
+      response(res, 500, false, err, "Get All checkout fail");
     }
   },
   getCheckoutDone: async (req, res) => {
@@ -61,7 +61,7 @@ const checkoutController = {
       response(res, 200, true, result.rows, "Get checkout success");
     } catch (err) {
       console.log(err);
-      response(res, 404, false, err, "Get checkout fail");
+      response(res, 500, false, err, "Get checkout fail");
     }
   },
   getCheckoutDetail: async (req, res) => {
@@ -72,7 +72,7 @@ const checkoutController = {
       response(res, 200, true, result.rows, "get checkout success");
     } catch (err) {
       console.log(err);
-      response(res, 404, false, err, "get checkout failed");
+      response(res, 500, false, err, "get checkout failed");
     }
   },
   getCheckoutSeller: async (req, res) => {
@@ -83,7 +83,7 @@ const checkoutController = {
       response(res, 200, true, result.rows, "Get checkout success");
     } catch (err) {
       console.log(err);
-      response(res, 404, false, err, "Get checkout fail");
+      response(res, 500, false, err, "Get checkout fail");
     }
   },
   getCheckoutDelivered: async (req, res) => {
@@ -97,7 +97,7 @@ const checkoutController = {
       response(res, 200, true, result.rows, "Get checkout success");
     } catch (err) {
       console.log(err);
-      response(res, 404, false, err, "Get checkout fail");
+      response(res, 500, false, err, "Get checkout fail");
     }
   },
 };
