@@ -11,7 +11,20 @@ const upload = require("./src/middlewares/upload");
 const mainRouter = require("./src/routes/index");
 
 app.use(morgan("dev"));
-app.use(cors("*"));
+const corsOptions = {
+  origin: "https://blanja-alvin.netlify.app",
+  credentials: true,
+  optionSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
+app.use(morgan("dev"));
+app.use(
+  helmet({
+    crossOriginEmbedderPolicy: false,
+    crossOriginResourcePolicy: false,
+  })
+);
+app.use(xss());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
