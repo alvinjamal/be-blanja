@@ -22,7 +22,19 @@ router.put(
   upload.single("photo"),
   UsersController.editProfileSeller
 );
-router.put("/edit", protect, upload.single("photo"), UsersController.putPhoto);
+router.put(
+  "/edit",
+  protect,
+  upload.single("photo"),
+  UsersController.putPhoto,
+  function (req, res) {
+    res.header(
+      "Access-Control-Allow-Origin",
+      "https://blanja-alvinjamal.netlify.app"
+    );
+    res.header("Access-Control-Allow-Credentials", true);
+  }
+);
 router.post("/register/:role", role, UsersController.register);
 router.post("/forgot/:token", UsersController.resetPassword);
 
