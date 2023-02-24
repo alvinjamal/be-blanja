@@ -7,6 +7,7 @@ const xss = require("xss-clean");
 const { response } = require("./src/middlewares/common");
 const app = express();
 const upload = require("./src/middlewares/upload");
+const helmet = require("helmet");
 
 const mainRouter = require("./src/routes/index");
 
