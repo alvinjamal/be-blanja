@@ -236,7 +236,7 @@ const UsersController = {
     try {
       const id_user = req.payload.id_user;
       const image = await cloudinary.uploader.upload(req.file.path, {
-        folder: "toko",
+        folder: "Store.id",
       });
 
       const update = {
