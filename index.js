@@ -13,7 +13,7 @@ const mainRouter = require("./src/routes/index");
 
 app.use(morgan("dev"));
 const corsOptions = {
-  origin: "https://blanja-alvin.netlify.app",
+  origin: "https://blanja-alvinjamal.netlify.app",
   credentials: true,
   optionSuccessStatus: 200,
 };
