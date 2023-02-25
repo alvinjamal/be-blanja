@@ -86,15 +86,15 @@ const ProductController = {
       //   folder: "Store.id",
       // });
 
-      const data = {
-        name_product: req.body.name_product,
-        stock: req.body.stock,
-        price: req.body.price,
-        category_id: req.body.category_id,
-        // photo: image.url,
-      };
+      req.body.stock = parseInt(req.body.stock);
+      req.body.price = parseInt(req.body.price);
+      req.body.category_id = parseInt(req.body.category_id);
+      const {
+        photo: [photo],
+      } = req.files;
+      req.body.photo = photo.path;
 
-      await ModelProduct.updateData(id_product, data);
+      await ModelProduct.updateData(id_product, req.body);
       response(res, 200, true, data, "update data success");
     } catch (error) {
       console.log(error);

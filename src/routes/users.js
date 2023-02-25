@@ -3,7 +3,7 @@ const router = express.Router();
 const { UsersController } = require("../controller/users");
 const { role, protect } = require("../middlewares/auth");
 const upload = require("..//middlewares/upload");
-const size = require("../middlewares/sizeUpload");
+const sizePhoto = require("../middlewares/sizeUpload");
 
 router.post("/login", UsersController.login);
 router.post("/verification", UsersController.verificationOtp);
@@ -25,7 +25,7 @@ router.put(
 router.put(
   "/edit",
   protect,
-  upload.single("photo"),
+  sizePhoto,
   UsersController.putPhoto
   // function (req, res) {
   //   res.header(

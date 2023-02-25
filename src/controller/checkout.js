@@ -5,7 +5,6 @@ const checkoutController = {
   insertCheckout: async (req, res) => {
     try {
       const user_id = req.payload.id_user;
-      console.log("id_user", user_id);
       req.body.transaction_id = parseInt(req.body.transaction_id);
       req.body.product_id = parseInt(req.body.product_id);
       req.body.status_id = parseInt(req.body.status_id);

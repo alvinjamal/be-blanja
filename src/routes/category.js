@@ -4,14 +4,14 @@ const { CategoryController } = require("../controller/category");
 const { validateStock } = require("../helpers/stock");
 const { protect } = require("../middlewares/auth");
 const upload = require("../middlewares/upload");
-// const {hitCache,clearCache}  = require("../middlewares/redis");
+const sizePhoto = require("../middlewares/sizeUpload");
 
 router.get("/", protect, CategoryController.getCategory);
 router.get("/:id_category", CategoryController.getCategoryDetail);
-router.post("/add", protect, upload.single("photo"), CategoryController.insert);
+router.post("/add", protect, sizePhoto, CategoryController.insert);
 router.put(
   "/update/:id_category",
-  upload.single("photo"),
+  sizePhoto,
   CategoryController.updateCategory
 );
 
