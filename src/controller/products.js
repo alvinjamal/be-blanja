@@ -86,17 +86,18 @@ const ProductController = {
       // const image = await cloudinary.uploader.upload(req.file.path, {
       //   folder: "Store.id",
       // });
+      const data = {
+        name_product: req.body.name_product,
+        stock: parseInt(req.body.stock),
+        price: parseInt(req.body.price),
+        category_id: parseInt(req.body.category_id),
+        // const {
+        //   photo: [photo],
+        // } = req.files;
+        // req.body.photo = photo.path;
+      };
 
-      req.body.name_product = req.body.name_product;
-      req.body.stock = parseInt(req.body.stock);
-      req.body.price = parseInt(req.body.price);
-      req.body.category_id = parseInt(req.body.category_id);
-      // const {
-      //   photo: [photo],
-      // } = req.files;
-      // req.body.photo = photo.path;
-
-      await ModelProduct.updateData(id_product, req.body);
+      await ModelProduct.updateData(id_product, data);
       response(res, 200, true, data, "update data success");
     } catch (error) {
       console.log(error);
