@@ -47,7 +47,7 @@ const ProductController = {
 
   insert: async (req, res, next) => {
     const user_id = req.payload.id_user;
-    const { name_product, price, stock, brand, photo, category_id } = req.body;
+    const { name_product, price, stock, brand, category_id } = req.body;
     // const Port = process.env.PORT;
     // const Host = process.env.HOST;
     // const photo = req.file.filename;
