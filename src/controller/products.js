@@ -1,6 +1,6 @@
 const ModelProduct = require("../models/products");
 const { response } = require("../middlewares/common");
-const cloudinary = require("../config/photo");
+const { cloudinary } = require("../config/photo");
 
 const ProductController = {
   getProduct: async (req, res, next) => {

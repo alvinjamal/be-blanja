@@ -16,7 +16,7 @@ const bcrypt = require("bcryptjs");
 const { v4: uuidv4 } = require("uuid");
 const { generateToken, decodeToken } = require("../helpers/auth");
 const email = require("../middlewares/email");
-const cloudinary = require("../config/photo");
+const { cloudinary } = require("../config/photo");
 
 const Port = process.env.PORT;
 const Host = process.env.HOST;

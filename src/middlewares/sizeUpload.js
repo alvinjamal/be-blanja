@@ -1,5 +1,5 @@
 const multer = require("multer");
-const storage = require("../config/photo");
+const { storage } = require("../config/photo");
 
 const sizePhoto = multer({
   storage: storage,
