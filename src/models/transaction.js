@@ -43,7 +43,7 @@ const updateTransaction = (id_transaction, dataTransaction) => {
 
 const deleteTransaction = (id_transaction) =>
   Pool.query(
-    `DELETE FROM transactions where id_transaction='${id_transaction}'`
+    `DELETE FROM transactions WHERE id_transaction='${id_transaction}'`
   );
 
 module.exports = {

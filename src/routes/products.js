@@ -10,7 +10,7 @@ const sizePhoto = require("../middlewares/sizeUpload");
 
 router.post("/add", protect, sizePhoto, ProductController.insert);
 router.get("/", ProductController.getProduct);
-router.put("/update/:id_product", protect, sizePhoto, ProductController.update);
+router.put("/update/:id_product", sizePhoto, ProductController.update);
 router.get("/category/:category_id", ProductController.getProductByCategory);
 router.get("/:id_product", ProductController.getProductDetail);
 

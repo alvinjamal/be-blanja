@@ -18,8 +18,9 @@ const transactionController = {
   },
   deleteTransaction: (req, res) => {
     try {
+      const id_transaction = req.params.id_transaction;
       modelTransaction
-        .deleteTransaction(req.params.id_transaction)
+        .deleteTransaction(id_transaction)
         .then(() => response(res, 200, true, "Delete Transaction success"));
     } catch (error) {
       console.log(error);
