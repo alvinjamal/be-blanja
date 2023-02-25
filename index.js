@@ -5,13 +5,10 @@ const cors = require("cors");
 require("dotenv").config();
 const xss = require("xss-clean");
 const { response } = require("./src/middlewares/common");
-const app = express();
-const upload = require("./src/middlewares/upload");
 const helmet = require("helmet");
 
 const mainRouter = require("./src/routes/index");
 
-app.use(morgan("dev"));
 const corsOptions = {
   origin: "https://blanja-alvinjamal.netlify.app",
   credentials: true,
@@ -25,16 +22,14 @@ app.use(
     crossOriginResourcePolicy: false,
   })
 );
+
 app.use(xss());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use(xss());
-
 app.use("/", mainRouter);
 app.use("/img", express.static("./upload"));
-app.use(upload.array());
+// app.use(upload.array());
 
 app.all("*", (req, res, next) => {
   response(res, 500, false, null, "500 Not Found");
