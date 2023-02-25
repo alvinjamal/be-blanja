@@ -46,30 +46,33 @@ const ProductController = {
   },
 
   insert: async (req, res, next) => {
+    // const { name_product, price, stock, brand, category_id } = req.body;
+    // // const Port = process.env.PORT;
+    // // const Host = process.env.HOST;
+    // // const photo = req.file.filename;
+    // // const uri = `http://${Host}:${Port}/img/${photo}`;
+    // const image = await cloudinary.uploader.upload(req.file.path, {
+    //   folder: "Store.id",
+    // });
+    // const data = {
+    //   name_product,
+    //   price,
+    //   stock,
+    //   brand,
+    //   photo: image.url,
+    //   category_id,
+    // };
+
     const user_id = req.payload.id_user;
-    const { name_product, price, stock, brand, category_id } = req.body;
-    // const Port = process.env.PORT;
-    // const Host = process.env.HOST;
-    // const photo = req.file.filename;
-    // const uri = `http://${Host}:${Port}/img/${photo}`;
-    const image = await cloudinary.uploader.upload(req.file.path, {
-      folder: "Store.id",
-    });
-    const data = {
-      name_product,
-      price,
-      stock,
-      brand,
-      photo: image.url,
-      category_id,
-    };
-    // req.body.photo = uri;
-    // req.body.name_product = req.body.name_product;
-    // req.body.stock = parseInt(req.body.stock);
-    // req.body.price = parseInt(req.body.price);
-    // req.body.brand = req.body.brand;
-    // req.body.category_id = req.body.category_id;
-    ModelProduct.insertData(user_id, data)
+    req.body.stock = parseInt(req.body.stock);
+    req.body.price = parseInt(req.body.price);
+    req.body.brand = req.body.brand;
+    req.body.category_id = parseInt(req.body.category_id);
+    const {
+      photo: [photo],
+    } = req.files;
+    req.body.photo = photo.path;
+    ModelProduct.insertData(user_id, req.body)
       .then((result) =>
         response(res, 200, true, req.body, "Insert data success")
       )
