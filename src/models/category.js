@@ -16,18 +16,18 @@ const selectDataCategorybyId = (id) =>
   });
 
 const insertCategory = (dataCategory) => {
-  const { name, photo } = dataCategory;
+  const { name_category, photo } = dataCategory;
   return Pool.query(
-    `INSERT INTO category(name,photo)VALUES('${name}','${photo}')`
+    `INSERT INTO category(name_category,photo)VALUES('${name_category}','${photo}')`
   );
 };
 
 const updateCategory = (id_category, data) => {
-  const { name, photo } = data;
+  const { name_category, photo } = data;
   new Promise((resolve, reject) =>
     Pool.query(
-      `UPDATE category SET name = COALESCE($2, name), photo = COALESCE($3, photo) where id_category = $1`,
-      [id_category, name, photo],
+      `UPDATE category SET name_category = COALESCE($2, name_category), photo = COALESCE($3, photo) where id_category = $1`,
+      [id_category, name_category, photo],
       (err, result) => {
         if (!err) {
           resolve(result);
