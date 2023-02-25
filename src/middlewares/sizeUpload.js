@@ -1,7 +1,7 @@
 const multer = require("multer");
 const storage = require("../config/photo");
 
-const sizeUpload = multer({
+const sizePhoto = multer({
   storage: storage,
 }).fields([
   {
@@ -18,4 +18,4 @@ const sizeUpload = multer({
   },
 ]);
 
-module.exports = sizeUpload;
+module.exports = sizePhoto;
