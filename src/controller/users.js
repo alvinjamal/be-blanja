@@ -206,7 +206,6 @@ const UsersController = {
     try {
       const { name, email, phone, gender, date, address } = req.body;
       const { id_user } = req.payload;
-      console.log(id_user);
       const {
         rows: [users],
       } = await findUsers(id_user);

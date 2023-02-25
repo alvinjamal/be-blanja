@@ -52,12 +52,15 @@ const CategoryController = {
   },
   insert: async (req, res) => {
     try {
-      const Port = process.env.PORT;
-      const Host = process.env.HOST;
-      const photo = req.file.filename;
-      const uri = `http://${Host}:${Port}/img/${photo}`;
-      req.body.photo = uri;
-      req.body.name;
+      // const Port = process.env.PORT;
+      // const Host = process.env.HOST;
+      // const photo = req.file.filename;
+      // const uri = `http://${Host}:${Port}/img/${photo}`;
+      const {
+        photo: [photo],
+      } = req.files;
+      req.body.photo = photo.path;
+      req.body.name = req.body.name;
       await ModelCategory.insertCategory(req.body);
       return response(res, 200, true, req.body, "Insert Data Success");
     } catch (err) {

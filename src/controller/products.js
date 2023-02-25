@@ -64,6 +64,7 @@ const ProductController = {
     // };
 
     const user_id = req.payload.id_user;
+    req.body.name_product = req.body.name_product;
     req.body.stock = parseInt(req.body.stock);
     req.body.price = parseInt(req.body.price);
     req.body.brand = req.body.brand;
