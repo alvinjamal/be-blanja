@@ -3,7 +3,7 @@ const Pool = require("../config/db");
 const selectData = (data) => {
   const { page, limit, offset, sort, sortby, search } = data;
   return Pool.query(
-    `select products.id_product,products.name_product,products.stock,products.price,products.brand,category.name as category,products.photo
+    `select products.id_product,products.name_product,products.stock,products.price,products.brand,category.name_category as category,products.photo
       FROM products
       INNER JOIN category
       ON products.category_id = category.id_category where (products.name_product) ilike '%${search}%' order by ${sortby} ${sort} limit ${limit} offset ${offset} `
@@ -13,7 +13,7 @@ const selectData = (data) => {
 const selectDatabyId = (id) =>
   new Promise((resolve, reject) => {
     Pool.query(
-      `select products.id_product,products.name_product,products.stock,products.price,products.brand,category.name as category,products.photo
+      `select products.id_product,products.name_product,products.stock,products.price,products.brand,category.name_category as category,products.photo
       FROM products
       INNER JOIN category
       ON products.category_id = category.id_category where id_product = '${id}' `,
@@ -70,7 +70,7 @@ const updateData = (id_product, data) => {
 const selectDataProductbyCategory = (category_id) =>
   new Promise((resolve, reject) => {
     Pool.query(
-      `select products.id_product,products.name_product,products.stock,products.price,products.brand,category.name as category,products.photo
+      `select products.id_product,products.name_product,products.stock,products.price,products.brand,category.name_category as category,products.photo
       FROM products
       INNER JOIN category
       ON products.category_id = category.id_category where category_id = '${category_id}'`,
