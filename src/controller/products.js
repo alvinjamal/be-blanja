@@ -87,13 +87,14 @@ const ProductController = {
       //   folder: "Store.id",
       // });
 
+      req.body.name_product = req.body.name_product;
       req.body.stock = parseInt(req.body.stock);
       req.body.price = parseInt(req.body.price);
       req.body.category_id = parseInt(req.body.category_id);
-      const {
-        photo: [photo],
-      } = req.files;
-      req.body.photo = photo.path;
+      // const {
+      //   photo: [photo],
+      // } = req.files;
+      // req.body.photo = photo.path;
 
       await ModelProduct.updateData(id_product, req.body);
       response(res, 200, true, data, "update data success");
