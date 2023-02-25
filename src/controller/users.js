@@ -235,14 +235,18 @@ const UsersController = {
   putPhoto: async (req, res) => {
     try {
       const id_user = req.payload.id_user;
-      const image = await cloudinary.uploader.upload(req.file.path, {
-        folder: "Store.id",
-      });
+      // const image = await cloudinary.uploader.upload(req.file.path, {
+      //   folder: "Store.id",
+      // });
 
-      const update = {
-        photo: image.url,
-      };
-      await updatePhotoProfile(id_user, update);
+      // const update = {
+      //   photo: image.url,
+      // };
+      const {
+        photo: [photo],
+      } = req.files;
+      req.body.photo = photo.path;
+      await updatePhotoProfile(id_user, req.body);
       return response(res, 200, true, req.body, "Update Photo Success");
     } catch (err) {
       return response(res, 500, false, err, "Update Photo Fail");
