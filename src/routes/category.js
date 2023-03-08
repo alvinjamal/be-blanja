@@ -6,7 +6,7 @@ const { protect } = require("../middlewares/auth");
 const upload = require("../middlewares/upload");
 const sizePhoto = require("../middlewares/sizeUpload");
 
-router.get("/", protect, CategoryController.getCategory);
+router.get("/", CategoryController.getCategory);
 router.get("/:id_category", CategoryController.getCategoryDetail);
 router.post("/add", protect, sizePhoto, CategoryController.insert);
 router.put(

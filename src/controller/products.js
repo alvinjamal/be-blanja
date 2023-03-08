@@ -87,10 +87,10 @@ const ProductController = {
       //   folder: "Store.id",
       // });
       const data = {
-        name_product: req.body.name_product,
+        // name_product: req.body.name_product,
         stock: parseInt(req.body.stock),
         price: parseInt(req.body.price),
-        category_id: parseInt(req.body.category_id),
+        // category_id: parseInt(req.body.category_id),
         // const {
         //   photo: [photo],
         // } = req.files;
@@ -98,17 +98,18 @@ const ProductController = {
       };
 
       await ModelProduct.updateData(id_product, data);
-      response(res, 200, true, data, "update data success");
+      response(res, 200, true, data, "Update Product success");
     } catch (error) {
       console.log(error);
-      response(res, 500, false, "update data failed");
+      response(res, 500, false, "Update Product failed");
     }
   },
 
   delete: (req, res) => {
     try {
-      ModelProduct.deleteProduct(req.params.id_product).then(() =>
-        response(res, 200, true, "Delete product success")
+      const id_product = req.params.id_product;
+      ModelProduct.deleteProduct(id_product).then(() =>
+        response(res, 200, true, "Delete Product success")
       );
     } catch (error) {
       console.log(error);
